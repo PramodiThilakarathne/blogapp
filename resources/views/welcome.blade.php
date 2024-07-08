@@ -37,12 +37,12 @@
 <br>
 <br>
 
-<!-- Main Content -->
+<!-- Video Cards Section -->
 <div class="bg-gray-100 py-12">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- First Video Card -->
-            <div class="col-span-1 bg-white">
+            <div class="col-span-1 bg-blue-100">
                 <div class="card rounded-lg overflow-hidden shadow-lg" style="height: 400px; width: 400px;">
                     <a href="https://redeemingtruthmedia.org/music/"
                        class="block w-full h-60 bg-cover bg-center"
@@ -80,7 +80,7 @@
             </div>
 
             <!-- Third Video Card -->
-            <div class="col-span-1 bg-green-100">
+            <div class="col-span-1 bg-blue-100">
                 <div class="card rounded-lg overflow-hidden shadow-lg" style="height: 400px; width: 400px;">
                     <a href="https://redeemingtruthmedia.org/publishing/"
                        class="block w-full h-60 bg-cover bg-center"
@@ -103,10 +103,11 @@
 
 <!-- Latest Posts Section -->
 <div class="container mx-auto mt-12 px-4">
-    <h3 class="text-3xl font-bold mb-6 text-center text-indigo-900">Latest Posts</h3>
+    <h3 class="text-3xl font-bold mb-6 text-left text-indigo-900 border-b-4 border-indigo-900 pb-2">Latest Posts</h3>
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         @foreach($posts as $post)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden" style="height: 400px; width: 400px;">
+            <div class="bg-green-100 rounded-lg shadow-lg overflow-hidden">
                 <div class="p-6">
                     <h5 class="text-xl font-bold text-indigo-800 mb-2">{{ $post->title }}</h5>
                     <p class="text-gray-700 mb-4">{{ Str::limit($post->content, 100) }}</p>
@@ -124,7 +125,6 @@
         @endforeach
     </div>
 </div>
-
 <!-- Footer Section -->
 <div class="bg-blue-200 shadow-md rounded px-8 py-6 mt-12 mb-4">
     <div class="flex justify-center mb-4">

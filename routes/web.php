@@ -15,6 +15,9 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
+
+
 Route::get('/dashboard', [PostController::class, 'userPosts'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
