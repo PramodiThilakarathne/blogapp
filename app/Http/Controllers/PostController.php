@@ -12,10 +12,11 @@ class PostController extends Controller
 {
 
     public function first()
-    {
-        $posts = Post::latest()->get(); // retrieve the 5 latest posts
-        return view('welcome', compact('posts'));
-    }
+{
+    $posts = Post::latest()->paginate(5); // Paginate latest posts
+
+    return view('welcome', compact('posts'));
+}
 
     public function index()
     {

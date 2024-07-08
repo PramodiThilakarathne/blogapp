@@ -17,14 +17,14 @@
         <h4 class="text-indigo-900 font-bold ml-4">Blogs !!</h4>
     </div>
     <div class="flex-grow flex items-center justify-center">
-        <h3 class="text-3xl font-bold text-light blue-900">Welcome to Humpty Dumpty's Blogs</h3>
+        <h3 class="text-3xl font-bold text-indigo-900">Welcome to Humpty Dumpty's Blogs</h3>
     </div>
     @if (Route::has('login'))
         <div class="ml-auto flex items-center pr-6">
             @auth
                 <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline ml-4">Log in</a>
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                 @endif
@@ -124,7 +124,13 @@
             </div>
         @endforeach
     </div>
+
+    <!-- Pagination Links -->
+    <div class="mt-8">
+        {{ $posts->links() }}
+    </div>
 </div>
+
 <!-- Footer Section -->
 <div class="bg-blue-200 shadow-md rounded px-8 py-6 mt-12 mb-4">
     <div class="flex justify-center mb-4">
@@ -146,6 +152,8 @@
             <i class="fab fa-instagram"></i>
         </a>
     </div>
+    <
+
     <div class="flex justify-center mb-4">
         <h4 class="text-lg font-bold text-gray-800">Quick Links</h4>
     </div>
