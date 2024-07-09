@@ -1,5 +1,13 @@
+
+@include('common.welcomeheader')
+<br>
+<br>
+<br>
 <x-guest-layout>
+
     <form method="POST" action="{{ route('register') }}">
+    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <img src="/images/s3.svg" alt="Login Image" class="w-full h-auto">
         @csrf
 
         <!-- Name -->
@@ -50,3 +58,4 @@
         </div>
     </form>
 </x-guest-layout>
+@include('common.footer')

@@ -1,4 +1,5 @@
-<!-- resources/views/layouts/navigation.blade.php -->
+
+    <!-- resources/views/layouts/navigation.blade.php -->
 <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,8 +42,7 @@
                             </div>
                         </button>
                     </x-slot>
-                
-                    @endif
+                @endif
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
@@ -118,3 +118,4 @@
         </div>
      </div>
 </nav>
+

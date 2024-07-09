@@ -1,11 +1,9 @@
+
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex items-center space-x-4">
-            <a href="{{ route('about') }}" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded mx-1">About Us</a>
-            <a href="{{ route('contact') }}" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded mx-1">Contact Us</a>
-            <a href="{{ route('welcome') }}" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded mx-1">Home</a>
-        </div>
-    </x-slot>
+@include('common.header')
+
+   <br>
+   <br>
     <div class="container mx-auto p-6">
         <div class="bg-white shadow-xl rounded-lg p-8">
             <h2 class="font-extrabold text-5xl text-pink-600">Users</h2>
@@ -33,4 +31,5 @@
             </table>
         </div>
     </div>
+    @include('common.footer')
 </x-app-layout>

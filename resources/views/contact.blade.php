@@ -1,10 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex items-center space-x-4">
-            <a href="{{ route('about') }}" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded mx-1">About Us</a>
-            <a href="{{ route('profile.edit') }}" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded mx-1">Profile</a>
-        </div>
-    </x-slot>
+@include('common.header')
+
+    
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -36,3 +33,5 @@
         </div>
     </div>
 </x-app-layout>
+
+@include('common.footer')

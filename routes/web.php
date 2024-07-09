@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/post/{post}', [PostController::class, 'update'])->name('post.update');
     Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 
-    Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
+   
     Route::get('/post', [PostController::class, 'index'])->name('Post.index');
     Route::post('/post-store', [PostController::class, 'store'])->name('Post.store');
 });
