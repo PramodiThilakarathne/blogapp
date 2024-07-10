@@ -32,4 +32,14 @@ class AdminController extends Controller
         $post->delete();
         return back()->with('status', 'Post deleted successfully');
     }
+
+    public function editPost(Post $post)
+    {
+        return view('admin.edit_post', compact('post'));
+    }
+
+    public function showPost(Post $post)
+    {
+        return view('admin.show_post', compact('post'));
+    }
 }

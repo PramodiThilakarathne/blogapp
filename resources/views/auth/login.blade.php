@@ -1,4 +1,5 @@
 @include('common.welcomeheader')
+
 <br>
 <br>
 <x-guest-layout>

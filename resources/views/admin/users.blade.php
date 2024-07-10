@@ -6,7 +6,7 @@
    <br>
     <div class="container mx-auto p-6">
         <div class="bg-white shadow-xl rounded-lg p-8">
-            <h2 class="font-extrabold text-5xl text-pink-600">Users</h2>
+            <h3 class="font-extrabold text-3xl text-purple-600">Users</h3>
             <table class="min-w-full bg-white mt-4 table-auto">
                 <thead>
                     <tr class="bg-gray-200">

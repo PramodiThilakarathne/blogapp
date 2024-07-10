@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <div class="bg-blue-200 shadow-md rounded px-8 py-6 mt-12 mb-4">
     <div class="flex justify-center mb-4">
         <img src="/images/b2.jpeg" alt="Humpty Dumpty" class="w-12 h-12 rounded-full mr-6">
@@ -28,6 +29,6 @@
         <a href="{{ route('contact') }}" class="text-black-600 hover:text-gray-900 transition duration-300 ease-in-out mr-4">Contact Us</a>
     </nav>
     <div class="text-center text-black-600 text-sm">
-        <p>© 2024 — .net . All Rights Reserved.</p>
+        <p>© 2024 — myblog.net . All Rights Reserved.</p>
     </div>
 </div>

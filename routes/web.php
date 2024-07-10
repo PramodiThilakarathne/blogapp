@@ -34,12 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/post-store', [PostController::class, 'store'])->name('Post.store');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
-    Route::get('/admin/users/{user}', [AdminController::class, 'viewUserPosts'])->name('admin.users.posts');
-    Route::delete('/admin/posts/{post}', [AdminController::class, 'destroyPost'])->name('admin.posts.destroy');
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/users/{user}/posts', [AdminController::class, 'viewUserPosts'])->name('admin.users.posts');
+    Route::delete('/posts/{post}', [AdminController::class, 'destroyPost'])->name('admin.posts.destroy');
+    Route::get('/posts/{post}/edit', [AdminController::class, 'editPost'])->name('admin.posts.edit');
+    Route::get('/posts/{post}', [AdminController::class, 'showPost'])->name('admin.posts.show');
 });
-
 
 require __DIR__.'/auth.php';
 
