@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', [PostController::class, 'first'])->name('welcome');
 
@@ -41,6 +42,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::delete('/posts/{post}', [AdminController::class, 'destroyPost'])->name('admin.posts.destroy');
     Route::get('/posts/{post}/edit', [AdminController::class, 'editPost'])->name('admin.posts.edit');
     Route::get('/posts/{post}', [AdminController::class, 'showPost'])->name('admin.posts.show');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
 });
 
 require __DIR__.'/auth.php';

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('content');
             $table->timestamps();
             $table->string('image')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); // Define foreign key relationship
         });
     }
 

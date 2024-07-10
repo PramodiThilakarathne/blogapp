@@ -1,13 +1,11 @@
-
 <x-app-layout>
-<head>
-    
-@include('common.header')
-    <!-- Include CKEditor 5 from CDN -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-</head>
+    <head>
+        @include('common.header')
+        <!-- Include CKEditor 5 from CDN -->
+        <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    </head>
 
-<div class="py-12">
+    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-800">
@@ -25,15 +23,13 @@
                                     <label for="title" class="block text-lg font-bold mb-2 text-gray-800">Title</label>
                                     <input type="text" id="title" name="title" value="" class="w-full pl-10 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
                                 </div>
-                                <!-- <div class="mb-4">
+                                
+
+                                <div class="w-[50vw] mb-4">
                                     <label for="content" class="block text-lg font-bold mb-2 text-gray-800">Content</label>
-                                    <textarea id="content" name="content" rows="6" class="w-full pl-10 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required></textarea>
-                                </div> -->
-                                    <div class="w-[50vw] mb-4">
-                                    <textarea name="content"></textarea>
-                                    </div>
-
-
+                                    <textarea id="content" name="content" ></textarea>
+                                </div>
+                                
                                 <div class="w-[50vw] mb-4">
                                     <label for="image" class="block text-lg font-bold mb-2 text-gray-800">Image</label>
                                     <input type="file" id="image" name="image" class="w-full pl-10 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
@@ -49,8 +45,6 @@
         </div>
     </div>
 
-
-
     <script>
         // Initialize CKEditor
         ClassicEditor
@@ -63,5 +57,5 @@
             });
     </script>
 
-@include('common.footer')
+    @include('common.footer')
 </x-app-layout>

@@ -14,10 +14,10 @@
                     <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
                     <input type="text" name="title" id="title" value="{{ $post->title }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
-                <div style="margin-bottom: 20px;">
-                <label for="content" style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Content</label>
-                <textarea id="content" name="content" style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">{{ $post->content }}</textarea>
-            </div>
+                <div class="w-[50vw] mb-4">
+                    <label for="content" class="block text-lg font-bold mb-2 text-gray-800">Content</label>
+                    <textarea id="content" name="content" ></textarea>
+                </div>
                 <div class="mb-4">
                     <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Image:</label>
                     <input type="file" name="image" id="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">

@@ -20,6 +20,9 @@
         </div>
     </div>
 
+
+
+    
     <div class="mb-4">
         <a href="{{ route('Post.index') }}" class="flex items-center justify-center ml-4 text-lg font-bold text-purple-600 hover:text-purple-800 border border-purple-600 hover:border-purple-800 w-32 h-12 rounded-md shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
             Add a blog

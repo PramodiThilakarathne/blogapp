@@ -4,6 +4,13 @@
 
    <br>
    <br>
+   <div class="mb-4">
+    <a href="{{ route('categories.create') }}" class="flex items-center justify-center ml-4 text-lg font-bold text-purple-600 hover:text-purple-800 border border-purple-600 hover:border-purple-800 w-32 h-12 rounded-md shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
+        Add Category
+    </a>
+</div>
+
+
     <div class="container mx-auto p-6">
         <div class="bg-white shadow-xl rounded-lg p-8">
             <h3 class="font-extrabold text-3xl text-purple-600">Users</h3>

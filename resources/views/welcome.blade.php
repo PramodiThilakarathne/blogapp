@@ -82,6 +82,24 @@
         </div>
     </div>
 
+
+    <div class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <form action="{{ route('welcome') }}" method="GET" class="flex flex-col md:flex-row items-center justify-between">
+                <select name="category" class="mb-4 md:mb-0 md:mr-4 p-2 rounded-md border-gray-300">
+                    <option value="">Select Category</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                {{-- <input type="text" name="author" placeholder="Author" value="{{ request('author') }}" class="mb-4 md:mb-0 md:mr-4 p-2 rounded-md border-gray-300">
+                <input type="date" name="date" value="{{ request('date') }}" class="mb-4 md:mb-0 md:mr-4 p-2 rounded-md border-gray-300"> --}}
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">Filter</button>
+            </form>
+        </div>
+    </div>
+
+
     <!-- Latest Posts Section -->
     <div class="container mx-auto mt-12 px-4">
         <h3 class="text-3xl font-bold mb-6 text-left text-indigo-900 border-b-4 border-indigo-900 pb-2">Latest Posts</h3>
@@ -114,7 +132,5 @@
 </main>
 
 @include('common.footer')
-
-
 </body>
 </html>

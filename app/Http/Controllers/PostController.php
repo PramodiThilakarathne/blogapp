@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,12 +12,30 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
 
-    public function first()
-{
-    $posts = Post::latest()->paginate(5); 
+    public function first(Request $request)
+    {
+        $query = Post::query();
 
-    return view('welcome', compact('posts'));
-}
+        if ($request->has('category') && $request->category) {
+            $query->where('category_id', $request->category);
+        }
+
+        if ($request->has('author') && $request->author) {
+            $query->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->author . '%');
+            });
+        }
+
+        if ($request->has('date') && $request->date) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        $posts = $query->latest()->paginate(5);
+        $categories = Category::all();
+
+        return view('welcome', compact('posts', 'categories'));
+    }
+
 
     public function index()
     {
@@ -46,11 +65,29 @@ class PostController extends Controller
     }
 
    
-    public function userPosts()
+    public function userPosts(Request $request)
     {
-        $userPosts = Post::where('user_id', Auth::id())->get();
+        $query = Post::where('user_id', Auth::id());
+
+        if ($request->has('category') && $request->category) {
+            $query->where('category_id', $request->category);
+        }
+
+        if ($request->has('author') && $request->author) {
+            $query->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->author . '%');
+            });
+        }
+
+        if ($request->has('date') && $request->date) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        $userPosts = $query->get();
         $postCount = $userPosts->count();
-        return view('dashboard', compact('userPosts', 'postCount'));
+        $categories = Category::all();
+
+        return view('dashboard', compact('userPosts', 'postCount', 'categories'));
     }
 
     public function edit(Post $post)

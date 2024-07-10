@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,12 +16,21 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function users()
+    public function users(Request $request)
     {
-        $users = User::withCount('posts')->get();
-        return view('admin.users', compact('users'));
-    }
+        $query = User::withCount('posts');
 
+        if ($request->has('category_id') && $request->category_id != '') {
+            $query->whereHas('posts', function($q) use ($request) {
+                $q->where('category_id', $request->category_id);
+            });
+        }
+
+        $users = $query->get();
+        $categories = Category::all();
+
+        return view('admin.users', compact('users', 'categories'));
+    }
     public function viewUserPosts(User $user)
     {
         $posts = $user->posts()->get();

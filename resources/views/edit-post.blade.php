@@ -16,9 +16,9 @@
                 <input type="text" id="title" name="title" value="{{ $post->title }}" style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
             
-            <div style="margin-bottom: 20px;">
-                <label for="content" style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Content</label>
-                <textarea id="content" name="content" style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">{{ $post->content }}</textarea>
+            <div class="w-[50vw] mb-4">
+                <label for="content" class="block text-lg font-bold mb-2 text-gray-800">Content</label>
+                <textarea id="content" name="content" ></textarea>
             </div>
 
             <div style="margin-bottom: 20px;">
@@ -37,7 +37,7 @@
     <script>
         // Initialize CKEditor
         ClassicEditor
-            .create(document.querySelector('#content'))
+            .create(document.querySelector('textarea'))
             .then(editor => {
                 console.log('Editor was initialized', editor);
             })
