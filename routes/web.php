@@ -44,6 +44,16 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/posts/{post}', [AdminController::class, 'showPost'])->name('admin.posts.show');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    //user crud routes
+
+    // Route::get('users', [AdminController::class, 'index'])->name('admin.users.index');
+    Route::get('users/create', [AdminController::class, 'create'])->name('admin.users.create');
+    Route::post('users', [AdminController::class, 'store'])->name('admin.users.store');
+    Route::get('users/{user}', [AdminController::class, 'show'])->name('admin.users.show');
+    Route::get('users/{user}/edit', [AdminController::class, 'edit'])->name('admin.users.edit');
+    Route::put('users/{user}', [AdminController::class, 'update'])->name('admin.users.update');
+    Route::patch('users/{user}', [AdminController::class, 'update']);
+    Route::delete('users/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
 
 });
 

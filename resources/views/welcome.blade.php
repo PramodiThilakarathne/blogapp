@@ -70,33 +70,37 @@
 
     <!-- Latest Posts Section -->
     <div class="container mx-auto mt-12 px-4">
-        <h3 class="text-3xl font-bold mb-6 text-left text-indigo-900 border-b-4 border-indigo-900 pb-2">Latest Posts</h3>
+    <h3 class="text-3xl font-bold mb-6 text-left text-indigo-900 border-b-4 border-indigo-900 pb-2">Latest Posts</h3>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @foreach($posts as $post)
-                <div class="bg-white rounded-lg shadow-lg bg-blue-100 overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl" style="height: 200px; width: 400px;">
-                    @if ($post->image)
-                        <div class="w-full h-20 bg-cover bg-center" style="background-image: url('{{ asset('storage/' . $post->image) }}');"></div>
-                    @else
-                        <div class="w-full h-20 bg-gray-200 flex items-center justify-center">
-                            <span class="text-gray-400">No image available</span>
-                        </div>
-                    @endif
-                    <div class="p-3">
-                        <h5 class="text-md font-bold text-indigo-800 mb-1">{{ $post->title }}</h5>
-                        <p class="text-xs text-gray-700 mb-2 overflow-hidden text-ellipsis">{{ \Illuminate\Support\Str::limit(strip_tags($post->content), 50, '...') }}</p>
-                        <a href="{{ route('post.show', $post->id) }}" class="text-xs text-blue-600 font-bold mt-1 inline-block">Read More</a>
-                        <p class="text-xs text-gray-500 mt-1">{{ $post->created_at->diffForHumans() }} by {{ $post->user->name }}</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        @foreach($posts as $post)
+            <div class="bg-white rounded-lg shadow-lg bg-blue-100 overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl" style="height: 200px; width: 400px;">
+                @if ($post->image)
+                    <div class="w-full h-20 bg-cover bg-center" style="background-image: url('{{ asset('storage/' . $post->image) }}');"></div>
+                @else
+                    <div class="w-full h-20 bg-gray-200 flex items-center justify-center">
+                        <span class="text-gray-400">No image available</span>
                     </div>
+                @endif
+                <div class="p-3">
+                    <h5 class="text-md font-bold text-indigo-800 mb-1">{{ $post->title }}</h5>
+                    <p class="text-xs text-gray-700 mb-2 overflow-hidden text-ellipsis">{{ \Illuminate\Support\Str::limit(strip_tags($post->content), 50, '...') }}</p>
+                    <a href="{{ route('post.show', $post->id) }}" class="text-xs text-blue-600 font-bold mt-1 inline-block">Read More</a>
+                    @if ($post->user)
+                        <p class="text-xs text-gray-500 mt-1">{{ $post->created_at->diffForHumans() }} by {{ $post->user->name }}</p>
+                    @else
+                        <p class="text-xs text-gray-500 mt-1">{{ $post->created_at->diffForHumans() }} by Unknown</p>
+                    @endif
                 </div>
-            @endforeach
-        </div>
-
-        <!-- Pagination Links -->
-        <div class="mt-8">
-            {{ $posts->links() }}
-        </div>
+            </div>
+        @endforeach
     </div>
+
+    <!-- Pagination Links -->
+    <div class="mt-8">
+        {{ $posts->links() }}
+    </div>
+</div>
 </main>
 
 @include('common.footer')
