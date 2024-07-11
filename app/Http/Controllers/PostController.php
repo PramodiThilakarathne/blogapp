@@ -20,15 +20,15 @@ class PostController extends Controller
             $query->where('category_id', $request->category);
         }
 
-        if ($request->has('author') && $request->author) {
-            $query->whereHas('user', function($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->author . '%');
-            });
-        }
+        // if ($request->has('author') && $request->author) {
+        //     $query->whereHas('user', function($q) use ($request) {
+        //         $q->where('name', 'like', '%' . $request->author . '%');
+        //     });
+        // }
 
-        if ($request->has('date') && $request->date) {
-            $query->whereDate('created_at', $request->date);
-        }
+        // if ($request->has('date') && $request->date) {
+        //     $query->whereDate('created_at', $request->date);
+        // }
 
         $posts = $query->latest()->paginate(5);
         $categories = Category::all();
@@ -39,19 +39,25 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('post');
+        $query = Post::query();
+        $posts = $query;
+        $categories = Category::all();
+
+        return view('post', compact('posts', 'categories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:32',
+            'title' => 'required|max:255',
             'content' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id', 
             'image' => 'nullable|image|max:2048'
         ]);
 
         $post = new Post();
         $post->user_id = Auth::id();
+        $post->category_id = $request->input('category_id'); 
         $post->title = $request->input('title');
         $post->content = $request->input('content');
 
@@ -61,7 +67,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Post created successfully!');
     }
 
    

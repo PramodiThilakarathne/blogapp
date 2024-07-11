@@ -13,10 +13,9 @@ class AddCategoryIdToPostsTable extends Migration
      */
     public function up()
     {
-        // Schema::table('posts', function (Blueprint $table) {
-        //     $table->unsignedBigInteger('category_id')->nullable()->after('user_id');
-        //     $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-        // });
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+        });
     }
 
     /**
@@ -31,4 +30,5 @@ class AddCategoryIdToPostsTable extends Migration
             $table->dropColumn('category_id');
         });
     }
-};
+}
+;

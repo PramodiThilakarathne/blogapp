@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            //$table->unsignedBigInteger('category_id');
             $table->string('title');
             $table->text('content');
             $table->timestamps();
-            $table->string('image')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); // Define foreign key relationship
+            //$table->string('image')->nullable();
+            //$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); 
         });
     }
 

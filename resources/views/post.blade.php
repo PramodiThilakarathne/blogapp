@@ -24,10 +24,21 @@
                                     <input type="text" id="title" name="title" value="" class="w-full pl-10 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
                                 </div>
                                 
+                                <div class="w-[50vw] mb-4">
+                                    <label for="category_id" class="block text-lg font-bold mb-2 text-gray-800">Category</label>
+                                    <select name="category_id" id="category_id" class="w-full pl-10 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
+                                        <option name="category" disabled selected>Select a category</option>
+                                        @isset($categories)
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        @endisset
+                                    </select>
+                                </div>
 
                                 <div class="w-[50vw] mb-4">
                                     <label for="content" class="block text-lg font-bold mb-2 text-gray-800">Content</label>
-                                    <textarea id="content" name="content" ></textarea>
+                                    <textarea id="content" name="content"></textarea>
                                 </div>
                                 
                                 <div class="w-[50vw] mb-4">
