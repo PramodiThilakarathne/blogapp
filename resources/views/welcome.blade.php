@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blogs</title>
- 
+
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs" defer></script>
 </head>
 
 <body class="antialiased font-sans bg-gray-100">
@@ -19,86 +20,53 @@
 <!-- Main Content -->
 <main class="pt-20"> <!-- Adjust padding-top to match the header height -->
     <!-- Video Cards Section -->
-    <div class="bg-gray-100 py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- First Video Card -->
-                <div class="col-span-1 bg-blue-100">
-                    <div class="card rounded-lg overflow-hidden shadow-lg" style="height: 400px; width: 400px;">
-                        <a href="https://redeemingtruthmedia.org/music/"
-                           class="block w-full h-60 bg-cover bg-center"
-                           style="background-image: url('https://redeemingtruthmedia.org/wp-content/uploads/2023/08/P1522385-1-767x1024.jpg');">
-                            <video autoplay muted loop class="w-full h-full object-cover">
-                                <source src="https://redeemingtruthmedia.org/wp-content/uploads/2024/05/Hisalonefrontpage.mp4"
-                                        type="video/mp4">
-                            </video>
-                        </a>
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold mb-2">Music</h3>
-                            <p class="text-sm text-gray-600">Songs that are doctrinally sound to be sung congregationally when we gather together in our local churches.</p>
-                            <a href="https://redeemingtruthmedia.org/music/" class="text-sm text-blue-600 font-bold mt-2 inline-block">Learn More</a>
-                        </div>
+    <div class="container mx-auto p-4 pt-6 md:p-6">
+        <div x-data="carousel()" class="relative w-full h-64 overflow-hidden rounded-lg shadow-md">
+            <div class="carousel-inner relative w-full h-full">
+                <!-- Carousel items -->
+                <template x-for="(image, index) in images" :key="index">
+                    <div x-show="currentIndex === index" class="carousel-item absolute w-full h-full transition-all duration-500 ease-in-out">
+                        <img :src="image.src" :alt="'Image ' + (index + 1)" class="w-full h-full object-contain rounded-lg" />
                     </div>
-                </div>
-
-                <!-- Second Video Card -->
-                <div class="col-span-1 bg-blue-100">
-                    <div class="card rounded-lg overflow-hidden shadow-lg" style="height: 400px; width: 400px;">
-                        <a href="https://redeemingtruthmedia.org/podcast/"
-                           class="block w-full h-60 bg-cover bg-center"
-                           style="background-image: url('https://redeemingtruthmedia.org/wp-content/uploads/2023/08/home_podcast.jpg');">
-                            <video autoplay muted loop class="w-full h-full object-cover">
-                                <source src="https://redeemingtruthmedia.org/wp-content/uploads/2024/05/redeeming-truth-podcast.mp4"
-                                        type="video/mp4">
-                            </video>
-                        </a>
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold mb-2">Podcast</h3>
-                            <p class="text-sm text-gray-600">Podcasts and short videos that speak into many biblical and cultural issues of our day. We hope these videos equip you to live a life to know, love and serve Jesus.</p>
-                            <a href="https://redeemingtruthmedia.org/podcast/" class="text-sm text-blue-600 font-bold mt-2 inline-block">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Third Video Card -->
-                <div class="col-span-1 bg-blue-100">
-                    <div class="card rounded-lg overflow-hidden shadow-lg" style="height: 400px; width: 400px;">
-                        <a href="https://redeemingtruthmedia.org/publishing/"
-                           class="block w-full h-60 bg-cover bg-center"
-                           style="background-image: url('https://redeemingtruthmedia.org/wp-content/uploads/2023/08/home_publishing.jpg');">
-                            <video autoplay muted loop class="w-full h-full object-cover">
-                                <source src="https://redeemingtruthmedia.org/wp-content/uploads/2024/05/Sample-Video.mp4"
-                                        type="video/mp4">
-                            </video>
-                        </a>
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold mb-2">Publishing</h3>
-                            <p class="text-sm text-gray-600">Blog posts and articles that encourage believers in their walk with the Lord.</p>
-                            <a href="https://redeemingtruthmedia.org/publishing/" class="text-sm text-blue-600 font-bold mt-2 inline-block">Learn More</a>
-                        </div>
-                    </div>
-                </div>
+                </template>
+            </div>
+            <!-- Carousel navigation -->
+            <button @click="prevSlide" class="carousel-control-prev absolute top-1/2 left-4 transform -translate-y-1/2 z-30 flex items-center justify-center w-10 h-10 bg-black bg-opacity-50 rounded-full cursor-pointer group">
+                <span class="carousel-control-prev-icon inline-block w-4 h-4 bg-white" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </button>
+            <button @click="nextSlide" class="carousel-control-next absolute top-1/2 right-4 transform -translate-y-1/2 z-30 flex items-center justify-center w-10 h-10 bg-black bg-opacity-50 rounded-full cursor-pointer group">
+                <span class="carousel-control-next-icon inline-block w-4 h-4 bg-white" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </button>
+            <!-- Carousel indicators -->
+            <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
+                <template x-for="(image, index) in images" :key="index">
+                    <button @click="currentIndex = index" :class="{
+                        'bg-blue-600': currentIndex === index,
+                        'bg-white': currentIndex !== index
+                    }" class="w-2 h-2 rounded-full focus:outline-none" aria-current="true" :aria-label="'Slide ' + (index + 1)"></button>
+                </template>
             </div>
         </div>
     </div>
 
-
+    <!-- Filter Section -->
     <div class="bg-gray-100 py-4">
         <div class="container mx-auto px-4">
-            <form action="{{ route('welcome') }}" method="GET" class="flex flex-col md:flex-row items-center justify-between">
-                <select name="category" class="mb-4 md:mb-0 md:mr-4 p-2 rounded-md border-gray-300">
+            <form action="{{ route('welcome') }}" method="GET" class="flex flex-col md:flex-row items-center justify-center space-x-4">
+                <select name="category" class="p-2 rounded-md border-gray-300">
                     <option value="">Select Category</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                 </select>
-                {{-- <input type="text" name="author" placeholder="Author" value="{{ request('author') }}" class="mb-4 md:mb-0 md:mr-4 p-2 rounded-md border-gray-300">
-                <input type="date" name="date" value="{{ request('date') }}" class="mb-4 md:mb-0 md:mr-4 p-2 rounded-md border-gray-300"> --}}
+                {{-- <input type="text" name="author" placeholder="Author" value="{{ request('author') }}" class="p-2 rounded-md border-gray-300">
+                <input type="date" name="date" value="{{ request('date') }}" class="p-2 rounded-md border-gray-300"> --}}
                 <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">Filter</button>
             </form>
         </div>
     </div>
-
 
     <!-- Latest Posts Section -->
     <div class="container mx-auto mt-12 px-4">
@@ -132,5 +100,41 @@
 </main>
 
 @include('common.footer')
+
+<script>
+    function carousel() {
+        return {
+            currentIndex: 0,
+            images: [
+                { src: '/images/h2.jpg' },
+                { src: '/images/b2.jpeg' },
+                { src: '/images/b1.jpeg' },
+                { src: '/images/b5.png' },
+            ],
+            prevSlide() {
+                this.currentIndex = (this.currentIndex === 0) ? this.images.length - 1 : this.currentIndex - 1;
+            },
+            nextSlide() {
+                this.currentIndex = (this.currentIndex === this.images.length - 1) ? 0 : this.currentIndex + 1;
+            },
+            init() {
+                setInterval(() => {
+                    this.nextSlide();
+                }, 3000);
+
+                this.$watch('currentIndex', () => {
+                    const carouselItems = document.querySelectorAll('.carousel-item');
+                    carouselItems.forEach((item, index) => {
+                        item.style.display = (index === this.currentIndex) ? 'block' : 'none';
+                    });
+                });
+            }
+        };
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('carousel', carousel);
+    });
+</script>
 </body>
 </html>

@@ -24,7 +24,7 @@
                                     <label for="message" class="block text-lg font-bold mb-2 text-gray-700">Message</label>
                                     <textarea id="message" name="message" class="w-full pl-10 text-sm text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
                                 </div>
-                                <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md">Send Message</button>
+                                <button type="submit" class="bg-blue-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md">Send Message</button>
                             </form>
                         </div>
                     </div>
