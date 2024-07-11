@@ -31,4 +31,25 @@
     <div class="text-center text-black-600 text-sm">
         <p>© 2024 — myblog.net . All Rights Reserved.</p>
     </div>
+
+
+    <button id="scroll-to-top-btn" class="bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the scroll-to-top button element
+        const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+
+        // Scroll to the top function
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Smooth scrolling behavior
+            });
+        });
+    });
+</script>
