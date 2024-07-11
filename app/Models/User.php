@@ -33,6 +33,18 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) {
+            $user->posts()->each(function ($post) {
+                $post->delete();
+            });
+        });
+    }
+
     public function isAdmin()
     {
         return $this->role === 'admin';
