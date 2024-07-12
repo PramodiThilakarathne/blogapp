@@ -10,6 +10,7 @@
     @include('common.welcomeheader')
     <br>
     <br>
+   
 </head>
 <body class="antialiased font-sans bg-gray-100">
 
@@ -33,6 +34,24 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    @if(session('success'))
+        Swal.fire({
+            title: "Sweet!",
+            text: "{{ session('success') }}",
+            imageUrl: "https://unsplash.it/400/200",
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: "Custom image"
+        });
+    @endif
+});
+</script>
 
 @include('common.footer')
 

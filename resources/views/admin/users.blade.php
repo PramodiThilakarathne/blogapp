@@ -1,9 +1,24 @@
 <x-app-layout>
     @include('common.header')
 
+    @if(session('status'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{ session('status') }}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
+    </script>
+@endif
+
+
     <br>
     <br>
-    <div class="mb-4 flex justify-start items-center space-x-4"> <!-- Added space-x-4 for spacing -->
+ <div class="mb-4 flex justify-start items-center space-x-4"> <!-- Added space-x-4 for spacing -->
         <a href="{{ route('categories.create') }}" class="flex items-center justify-center text-lg font-bold text-purple-600 hover:text-purple-800 border border-purple-600 hover:border-purple-800 w-32 h-12 rounded-md shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
             Add Category
         </a>
@@ -51,4 +66,5 @@
     </div>
 
     @include('common.footer')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </x-app-layout>
