@@ -3,12 +3,13 @@
 
     <br>
     <br>
-    <div class="mb-4 flex justify-between items-center">
-        <a href="{{ route('categories.create') }}" class="flex items-center justify-center ml-4 text-lg font-bold text-purple-600 hover:text-purple-800 border border-purple-600 hover:border-purple-800 w-32 h-12 rounded-md shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
+    <div class="mb-4 flex justify-start items-center space-x-4"> <!-- Added space-x-4 for spacing -->
+        <a href="{{ route('categories.create') }}" class="flex items-center justify-center text-lg font-bold text-purple-600 hover:text-purple-800 border border-purple-600 hover:border-purple-800 w-32 h-12 rounded-md shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
             Add Category
         </a>
         <a href="{{ route('admin.users.create') }}" class="flex items-center justify-center text-lg font-bold text-purple-600 hover:text-purple-800 border border-purple-600 hover:border-purple-800 w-32 h-12 rounded-md shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
-            Add User
+            Add User /
+            <br> Add Admin
         </a>
     </div>
 

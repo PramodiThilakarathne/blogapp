@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -75,12 +76,14 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|string|in:user,admin', // Validate role
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role, // Save role
         ]);
 
         return redirect()->route('admin.users')->with('status', 'User created successfully');
@@ -112,4 +115,17 @@ class AdminController extends Controller
         
         return redirect()->route('admin.users');
     }
+
+    public function __construct()
+{
+    $this->middleware('auth');
+    $this->middleware(function ($request, $next) {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/'); // Redirect non-admin users
+        }
+        return $next($request);
+    });
+}
+
+
 }

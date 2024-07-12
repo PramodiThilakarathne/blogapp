@@ -1,7 +1,7 @@
 <x-app-layout>
     <head>
         @include('common.header')
-        <!-- Include CKEditor 5 from CDN -->
+       
         <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
     </head>
 
@@ -57,7 +57,7 @@
     </div>
 
     <script>
-        // Initialize CKEditor
+      
         ClassicEditor
             .create(document.querySelector('textarea'))
             .then(editor => {

@@ -30,7 +30,7 @@
     </div>
 
     <script>
-        // Initialize CKEditor
+        
         ClassicEditor
             .create(document.querySelector('textarea'))
             .then(editor => {

@@ -63,22 +63,22 @@
     @include('common.footer')
 
     <style>
-        /* Hover effect for Edit button */
+        
         .bg-green-500:hover {
-            background-color: #2d7d2a; /* Darker shade of green */
+            background-color: #2d7d2a; 
         }
 
-        /* Hover effect for Delete button */
+        
         .bg-purple-500:hover {
-            background-color: #7932b8; /* Darker shade of purple */
+            background-color: #7932b8; 
         }
 
-        /* Hover effect for View button */
+        
         .bg-blue-500:hover {
-            background-color: #2b6cb0; /* Darker shade of blue */
+            background-color: #2b6cb0;
         }
 
-        /* Ensure fixed size for buttons */
+        
         .bg-green-500, .bg-purple-500, .bg-blue-500 {
             width: 100px;
             text-align: center;

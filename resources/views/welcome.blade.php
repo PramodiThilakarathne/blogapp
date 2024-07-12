@@ -18,8 +18,8 @@
 </header>
 
 <!-- Main Content -->
-<main class="pt-20"> <!-- Adjust padding-top to match the header height -->
-    <!-- Video Cards Section -->
+<main class="pt-20"> 
+   
     <div class="container mx-auto p-4 pt-6 md:p-6">
         <div x-data="carousel()" class="relative w-full h-64 overflow-hidden rounded-lg shadow-md">
             <div class="carousel-inner relative w-full h-full">

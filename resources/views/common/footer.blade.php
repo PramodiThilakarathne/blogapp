@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<div class="bg-blue-200 shadow-md rounded px-8 py-6 mt-12 mb-4">
+
+<div class="relative bg-blue-200 shadow-md rounded px-8 py-6 mt-12 mb-4">
     <div class="flex justify-center mb-4">
         <img src="/images/b2.jpeg" alt="Humpty Dumpty" class="w-12 h-12 rounded-full mr-6">
         <h4 class="text-lg font-bold text-gray-800">My Blog</h4>
@@ -20,7 +21,7 @@
         </a>
     </div>
 
-<div class="flex justify-center mb-4">
+    <div class="flex justify-center mb-4">
         <h4 class="text-lg font-bold text-gray-800">Quick Links</h4>
     </div>
     <nav class="flex justify-center mb-4">
@@ -32,23 +33,21 @@
         <p>© 2024 — myblog.net . All Rights Reserved.</p>
     </div>
 
-
-    <button id="scroll-to-top-btn" class="bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 focus:outline-none">
+    <button id="scroll-to-top-btn" class="absolute bottom-4 right-4 bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 focus:outline-none">
         <i class="fas fa-arrow-up"></i>
     </button>
 </div>
 
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Get the scroll-to-top button element
+        
         const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
 
-        // Scroll to the top function
+
         scrollToTopBtn.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // Smooth scrolling behavior
+                behavior: 'smooth'
             });
         });
     });

@@ -1,51 +1,74 @@
-<x-app-layout>
-    @include('common.header')
+@include('common.welcomeheader')
+<br>
+<br>
+<br>
+<x-guest-layout>
+    <div class="flex items-center justify-center">
+        <!-- Form Container -->
+        <div class="w-full md:w-2/3 lg:w-1/2 p-6">
+            <form method="POST" action="{{ route('admin.users.store') }}">
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+                @csrf
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    @if ($errors->any())
-                        <div class="mb-4">
-                            <ul class="text-red-500">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('admin.users.store') }}">
-                        @csrf
-
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                            <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-input rounded-md shadow-sm mt-1 block w-full" required autofocus />
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                            <input type="password" name="password" id="password" class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div>
-
-                        <div class="flex items-center justify-end mt-4">
-                            <button type="submit" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Create User
-                            </button>
-                        </div>
-                    </form>
+                <!-- Name -->
+                <div>
+                    <x-input-label for="name" :value="__('Name')" />
+                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
-            </div>
+
+                <!-- Email Address -->
+                <div class="mt-4">
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
+
+                <!-- Password -->
+                <div class="mt-4">
+                    <x-input-label for="password" :value="__('Password')" />
+                    <x-text-input id="password" class="block mt-1 w-full"
+                                  type="password"
+                                  name="password"
+                                  required autocomplete="new-password" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mt-4">
+                    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                    <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                                  type="password"
+                                  name="password_confirmation" required autocomplete="new-password" />
+                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                </div>
+
+                <!-- User Type -->
+                <div class="mt-4">
+                    <x-input-label for="role" :value="__('User Type')" />
+                    <select id="role" name="role" class="block mt-1 w-full">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <x-input-error :messages="$errors->get('role')" class="mt-2" />
+                </div>
+
+                <div class="flex items-center justify-end mt-4">
+                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                        {{ __('Already registered?') }}
+                    </a>
+
+                    <x-primary-button class="ml-4">
+                        {{ __('Register') }}
+                    </x-primary-button>
+                </div>
+            </form>
+        </div>
+
+        <!-- SVG Image Container -->
+        <div class="hidden md:block w-2/3 lg:w-1/2 p-6">
+            <img src="/images/s7.svg" alt="Register Image" class="w-full h-auto">
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>
+@include('common.footer')

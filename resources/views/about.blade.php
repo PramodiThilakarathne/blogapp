@@ -2,7 +2,7 @@
     @include('common.header')
     
     <div class="container mx-auto p-4 pt-6 md:p-6">
-        <!-- Zigzag Sections -->
+        
         <div class="space-y-12">
             <!-- Our Mission -->
             <div class="group flex flex-col md:flex-row items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-indigo-50">
