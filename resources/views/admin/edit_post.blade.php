@@ -32,7 +32,7 @@
     <script>
         // Initialize CKEditor
         ClassicEditor
-            .create(document.querySelector('#content'))
+            .create(document.querySelector('textarea'))
             .then(editor => {
                 console.log('Editor was initialized', editor);
             })
