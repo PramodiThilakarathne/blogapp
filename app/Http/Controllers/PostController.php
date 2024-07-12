@@ -39,9 +39,9 @@ class PostController extends Controller
 
     public function index()
     {
-        $query = Post::query();
-        $posts = $query;
+        $posts = Post::with('category')->get();
         $categories = Category::all();
+
 
         return view('post', compact('posts', 'categories'));
     }
@@ -50,7 +50,7 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required|string|max:255',
+            'content' => 'required|string',
             'category_id' => 'required|exists:categories,id', 
             'image' => 'nullable|image|max:2048'
         ]);
