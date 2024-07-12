@@ -101,7 +101,8 @@ class PostController extends Controller
         if ($post->user_id !== Auth::id()) {
             abort(403, 'You do not have permission to edit this post');
         }
-        return view('edit-post', compact('post'));
+        $categories = Category::all();
+        return view('edit-post', compact('post', 'categories'));
     }
 
     public function update(Request $request, Post $post)
@@ -110,12 +111,14 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
             'image' => 'nullable|image|max:2048',
         ]);
 
         // Update the post with the validated data
         $post->title = $validated['title'];
         $post->content = $validated['content'];
+        $post->category_id = $request->input('category_id');
 
         // Handle image upload if present
         if ($request->hasFile('image')) {
