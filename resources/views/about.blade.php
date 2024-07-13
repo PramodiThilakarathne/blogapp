@@ -1,5 +1,5 @@
 <x-app-layout>
-    @include('common.header')
+    @include('common.welcomeheader')
     
     <div class="container mx-auto p-4 pt-6 md:p-6">
         

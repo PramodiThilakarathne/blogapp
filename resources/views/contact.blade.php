@@ -1,5 +1,5 @@
 <x-app-layout>
-@include('common.header')
+@include('common.welcomeheader')
 
     
 
