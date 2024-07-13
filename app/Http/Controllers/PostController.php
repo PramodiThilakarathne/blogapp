@@ -67,7 +67,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('dashboard')->with('success', 'Post created successfully!');
+        return redirect()->route('dashboard')->with('post_store', 'Youre post is successfully created !!');
     }
 
    
@@ -139,13 +139,14 @@ class PostController extends Controller
         return redirect()->route('dashboard')->with('status', 'Post updated successfully!');
     }
 
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        if ($post->user_id !== Auth::id()) {
-            abort(403, 'You do not have permission to delete this post');
+        $post = Post::find($id);
+        if ($post) {
+            $post->delete();
+            return redirect()->route('dashboard')->with('success', 'Post deleted successfully.');
         }
-        $post->delete();
-        return redirect()->route('dashboard')->with('success', 'Post deleted Successfully!');
+        return redirect()->route('dashboard')->with('error', 'Post not found.');
     }
 
     public function show(Post $post)

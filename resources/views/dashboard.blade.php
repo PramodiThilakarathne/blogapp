@@ -1,5 +1,16 @@
 <x-app-layout>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <x-slot name="header">
+
+        <style>
+            .btn-fixed {
+                width: 70px; /* Set the desired width */
+                display: inline-block;
+                text-align: center; /* Center the text within the button */
+            }
+        </style>
+
         <div class="flex justify-end items-center">
             <div class="flex items-center gap-x-2">
                 <a href="{{ route('profile.edit') }}" class="text-sm text-gray-700 hover:text-blue-600 transition duration-300 ease-in-out py-2 px-4 rounded-full bg-blue-100 hover:bg-blue-200">Profile</a>
@@ -17,7 +28,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="mb-4">
         <a href="{{ route('Post.index') }}" class="flex items-center justify-center ml-4 text-lg font-bold text-purple-600 hover:text-purple-800 border border-purple-600 hover:border-purple-800 w-32 h-12 rounded-md shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
@@ -52,13 +62,13 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-4 text-center space-x-2">
-                                    <a href="{{ route('post.edit', $post) }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Edit</a>
-                                    <form action="{{ route('post.destroy', $post) }}" method="POST" class="inline">
+                                    <a href="{{ route('post.edit', $post) }}" class="btn-fixed bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Edit</a>
+                                    <form id="delete-post-{{ $post->id }}" action="{{ route('post.destroy', $post->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Delete</button>
+                                        <button type="button" class="btn-fixed bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none" onclick="confirmDelete(event, 'delete-post-{{ $post->id }}')">Delete</button>
                                     </form>
-                                    <a href="{{ route('post.show', $post) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">View</a>
+                                    <a href="{{ route('post.show', $post) }}" class="btn-fixed bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">View</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -69,4 +79,72 @@
     </div>
 
     @include('common.footer')
+
+
+    @if(session('post_store'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{ session('post_store') }}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
+    </script>
+    @endif
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('status'))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: "{{ session('status') }}",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            @endif
+        });
+
+        function confirmDelete(event, formId) {
+            event.preventDefault();
+            
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success ml-2", // Add a margin-left to the confirm button
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+            
+            swalWithBootstrapButtons.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                    swalWithBootstrapButtons.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your blog file is safe :)",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+    </script>
 </x-app-layout>

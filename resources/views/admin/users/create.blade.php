@@ -1,8 +1,9 @@
-@include('common.welcomeheader')
+<x-app-layout>
+@include('common.header')
 <br>
 <br>
 <br>
-<x-guest-layout>
+
     <div class="flex items-center justify-center">
         <!-- Form Container -->
         <div class="w-full md:w-2/3 lg:w-1/2 p-6">
@@ -70,5 +71,6 @@
             <img src="/images/s7.svg" alt="Register Image" class="w-full h-auto">
         </div>
     </div>
-</x-guest-layout>
+
 @include('common.footer')
+</x-app-layout>

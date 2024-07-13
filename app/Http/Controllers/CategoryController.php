@@ -22,6 +22,6 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.users')->with('success', 'Category created successfully!');
+        return redirect()->route('admin.users')->with('category_success', 'Category created successfully!');
     }
 }

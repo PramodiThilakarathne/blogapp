@@ -86,7 +86,7 @@ class AdminController extends Controller
             'role' => $request->role, // Save role
         ]);
 
-        return redirect()->route('admin.users')->with('status', 'User created successfully');
+        return redirect()->route('admin.users')->with('user_success', 'User created successfully');
     }
 
     public function edit(User $user)
@@ -106,26 +106,26 @@ class AdminController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('admin.users');
+        return redirect()->route('admin.users')->with('user_update', 'User is successfully updated');;
     }
 
     public function destroy(User $user)
     {
         $user->delete();
         
-        return redirect()->route('admin.users');
+        return redirect()->route('admin.users')->with('status', 'User deleted successfully');
     }
 
     public function __construct()
-{
-    $this->middleware('auth');
-    $this->middleware(function ($request, $next) {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/'); // Redirect non-admin users
-        }
-        return $next($request);
-    });
-}
+    {
+        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            if (Auth::user()->role !== 'admin') {
+                return redirect('/'); // Redirect non-admin users
+            }
+            return $next($request);
+        });
+    }
 
 
 }

@@ -1,6 +1,48 @@
 <x-app-layout>
     @include('common.header')
 
+    @if(session('category_success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{ session('category_success') }}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
+    </script>
+    @endif
+    
+    @if(session('user_success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{ session('user_success') }}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
+    </script>
+    @endif
+
+    @if(session('user_update'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{ session('user_update') }}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
+    </script>
+    @endif
+
     @if(session('status'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -13,8 +55,7 @@
             });
         });
     </script>
-@endif
-
+    @endif
 
     <br>
     <br>
@@ -52,10 +93,10 @@
                         <td class="px-4 py-2">{{ $user->posts_count }}</td>
                         <td class="px-4 py-2">
                             <a href="{{ route('admin.users.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-4">Edit</a>
-                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block">
+                            <form id="delete-user-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                <button type="button" class="text-red-600 hover:text-red-900" onclick="confirmDelete(event, '{{ $user->id }}')">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -67,4 +108,35 @@
 
     @include('common.footer')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function confirmDelete(event, userId) {
+            event.preventDefault();
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success ml-2",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButtons.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-user-' + userId).submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "user is safe :)",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+    </script>
 </x-app-layout>
