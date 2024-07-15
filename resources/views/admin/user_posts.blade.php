@@ -32,13 +32,13 @@
                             <td class="py-3 px-4">{{ $post->created_at->format('M d, Y') }}</td>
                             <td class="py-3 px-4">
                                 <div class="flex space-x-2">
-                                    <a href="{{ route('admin.posts.edit', $post) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Edit</a>
-                                    <a href="{{ route('admin.posts.show', $post) }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">View</a>
+                                    <a href="{{ route('admin.posts.edit', $post) }}" class="btn-fixed bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Edit</a>
+                                    <a href="{{ route('admin.posts.show', $post) }}" class="btn-fixed bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">View</a>
                                     @if(Auth::check() && Auth::user()->isAdmin())
                                     <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                                        <button type="submit" class="btn-fixed bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Delete</button>
                                     </form>
                                     @endif
                                 </div>

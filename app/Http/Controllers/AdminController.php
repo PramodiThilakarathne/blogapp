@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -38,6 +39,37 @@ class AdminController extends Controller
         return view('admin.user_posts', compact('user', 'posts'));
     }
 
+    public function updatePost(Request $request, Post $post)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'category_id' => 'required|integer|exists:categories,id',
+            'content' => 'required|string',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $post->title = $validated['title'];
+        $post->content = $validated['content'];
+        $post->category_id = $request->input('category_id');
+
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($post->image) {
+                Storage::delete('public/' . $post->image);
+            }
+
+            // Store the new image
+            $path = $request->file('image')->store('images', 'public');
+            $post->image = $path;
+        }
+
+        $post->save();
+
+        return redirect()->route('admin.user.posts', ['user' => $post->user_id])->with('status', 'Post updated successfully');
+    }
+
+
+
     public function destroyPost(Post $post)
     {
         $post->delete();
@@ -46,7 +78,8 @@ class AdminController extends Controller
 
     public function editPost(Post $post)
     {
-        return view('admin.edit_post', compact('post'));
+        $categories = Category::all();
+        return view('admin.edit_post', compact('post', 'categories'));
     }
 
     public function showPost(Post $post)

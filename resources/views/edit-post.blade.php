@@ -3,8 +3,8 @@
     @include('common.header')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 </head>
-
-
+<div class="w-full px-6 py-4">
+<h1 class="text-3xl font-bold mb-4 text-left text-pink-800">Update the post</h1>
     <div style="background-color: #fff; padding: 40px; width: 100%; margin: 40px auto; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
         <form action="{{ route('post.update', $post) }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -27,10 +27,11 @@
                 </select>
             </div>
 
-            <div class="w-[50vw] mb-4">
+            <div class="w-full mb-4">
                 <label for="content" class="block text-lg font-bold mb-2 text-gray-800">Content</label>
                 <textarea id="content" name="content">{{ $post->content }}</textarea>
             </div>
+            
             
             <div style="margin-bottom: 20px;">
                 <label for="image" style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Image</label>
@@ -44,6 +45,7 @@
             <button type="submit" style="background-color: #337ab7; color: #fff; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer;">Update Post</button>
         </form>
     </div>
+</div>
 
     <script>
         ClassicEditor

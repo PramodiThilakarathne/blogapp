@@ -38,7 +38,11 @@ Route::middleware('auth')->group(function () {
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
-    Route::get('/users/{user}/posts', [AdminController::class, 'viewUserPosts'])->name('admin.users.posts');
+   Route::get('/users/{user}/posts', [AdminController::class, 'viewUserPosts'])->name('admin.users.posts');
+    Route::patch('/posts/{post}', [AdminController::class, 'updatePost'])->name('admin.post.update');
+    Route::get('/admin/user_posts/{user}', [AdminController::class, 'viewUserPosts'])->name('admin.user.posts');
+
+
     Route::delete('/posts/{post}', [AdminController::class, 'destroyPost'])->name('admin.posts.destroy');
     Route::get('/posts/{post}/edit', [AdminController::class, 'editPost'])->name('admin.posts.edit');
     Route::get('/posts/{post}', [AdminController::class, 'showPost'])->name('admin.posts.show');
