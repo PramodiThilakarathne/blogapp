@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 
-Route::get('/', [PostController::class, 'first'])->name('welcome');
+Route::get('/', [PostController::class, 'index'])->name('welcome');
+Route::get('/get-titles-by-category/{categoryId}', [PostController::class, 'getTitlesByCategory']);
 
 Route::get('/about', function () {
     return view('about');

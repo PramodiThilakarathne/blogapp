@@ -37,13 +37,28 @@ class PostController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('category')->get();
         $categories = Category::all();
+        $query = Post::query();
 
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
 
-        return view('post', compact('posts', 'categories'));
+        if ($request->filled('titles')) {
+            $query->whereIn('id', $request->titles);
+        }
+
+        $posts = $query->paginate(6);
+
+        return view('welcome', compact('categories', 'posts'));
+    }
+
+    public function getTitlesByCategory($categoryId)
+    {
+        $titles = Post::where('category_id', $categoryId)->get(['id', 'title']);
+        return response()->json(['titles' => $titles]);
     }
 
     public function store(Request $request)
