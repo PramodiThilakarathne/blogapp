@@ -5,7 +5,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 
+Route::post('/contact', [ContactController::class, 'sendContactMessage'])->name('contact.send');
 Route::get('/', [PostController::class, 'index'])->name('welcome');
 Route::get('/get-titles-by-category/{categoryId}', [PostController::class, 'getTitlesByCategory']);
 
@@ -42,8 +44,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/posts/{post}', [AdminController::class, 'showPost'])->name('admin.posts.show');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    
     //user crud routes
-
     // Route::get('users', [AdminController::class, 'index'])->name('admin.users.index');
     Route::get('users/create', [AdminController::class, 'create'])->name('admin.users.create');
     Route::post('users', [AdminController::class, 'store'])->name('admin.users.store');
