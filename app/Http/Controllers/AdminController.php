@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +16,46 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
     public function dashboard()
+    
     {
-        return view('admin.dashboard');
+        $userPosts = Post::all(); 
+        $comments = Comment::where('approved', false)->with(['post', 'user'])->get();
+        $replies = Reply::where('approved', false)->with(['comment', 'user'])->get();
+
+        return view('admin.dashboard', compact('comments', 'replies'));
+    }
+
+    public function approveComment($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->approved = true;
+        $comment->save();
+
+        return response()->json(['success' => true, 'message' => 'Comment approved.', 'comment_id' => $id]);
+    }
+
+    public function rejectComment($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+
+        return redirect()->route('admin.comments')->with('comment_reject', 'Comment rejected.');
+    }
+
+    public function approveReply($id)
+    {
+        $reply = Reply::findOrFail($id);
+        $reply->approved = true;
+        $reply->save();
+
+        return response()->json(['success' => true, 'message' => 'Reply approved.', 'reply_id' => $id]);
+    }
+    public function rejectReply($id)
+    {
+        $reply = Reply::findOrFail($id);
+        $reply->delete();
+
+        return redirect()->route('admin.comments')->with('reply_reject', 'Reply rejected.');
     }
 
     public function users(Request $request)
@@ -72,19 +112,19 @@ class AdminController extends Controller
 
     public function destroyPost(Post $post)
     {
-        $post->delete();
-        return back()->with('status', 'Post deleted successfully');
+            $post->delete();
+            return back()->with('status', 'Post deleted successfully');
     }
 
     public function editPost(Post $post)
     {
-        $categories = Category::all();
-        return view('admin.edit_post', compact('post', 'categories'));
+            $categories = Category::all();
+            return view('admin.edit_post', compact('post', 'categories'));
     }
 
     public function showPost(Post $post)
     {
-        return view('admin.show_post', compact('post'));
+            return view('admin.show_post', compact('post'));
     }
 
 
@@ -94,13 +134,13 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = User::withCount('posts')->get();
-        return view('admin.users', compact('users'));
+            $users = User::withCount('posts')->get();
+            return view('admin.users', compact('users'));
     }
 
     public function create()
     {
-        return view('admin.users.create');
+            return view('admin.users.create');
     }
 
     public function store(Request $request)
@@ -154,7 +194,7 @@ class AdminController extends Controller
         $this->middleware('auth');
         $this->middleware(function ($request, $next) {
             if (Auth::user()->role !== 'admin') {
-                return redirect('/'); // Redirect non-admin users
+                return redirect('/'); 
             }
             return $next($request);
         });

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -166,7 +168,46 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post-index', compact('post'));
+        $comments = Comment::where('post_id', $post->id)
+                           ->where('approved', true)
+                           ->with(['user', 'replies' => function($query) {
+                               $query->where('approved', true);
+                           }, 'replies.user'])
+                           ->get();
+
+        return view('post-index', compact('post', 'comments'));
+    }
+
+    public function storeComment(Request $request, Post $post)
+    {
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        $comment = new Comment();
+        $comment->post_id = $post->id;
+        $comment->user_id = Auth::id();
+        $comment->content = $request->input('content');
+        $comment->approved = false; // Default to false
+        $comment->save();
+
+        return redirect()->back()->with('message', 'Comment submitted for approval.');
+    }
+
+    public function storeReply(Request $request, Comment $comment)
+    {
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        $reply = new Reply();
+        $reply->comment_id = $comment->id;
+        $reply->user_id = Auth::id();
+        $reply->content = $request->input('content');
+        $reply->approved = false; // Default to false
+        $reply->save();
+
+        return redirect()->back()->with('message', 'Reply submitted for approval.');
     }
 
 }

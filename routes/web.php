@@ -6,6 +6,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReplyController;
+
+Route::get('/admin/comments', [CommentController::class, 'index'])->name('admin.comments');
+
+//Route::post('/replies/{comment}', [ReplyController::class, 'store'])->name('replies.store');
+Route::post('/replies/{reply}/approve', [ReplyController::class, 'approve'])->name('admin.replies.approve');
+Route::post('/replies/{reply}/reject', [ReplyController::class, 'reject'])->name('admin.replies.reject');
+
+
 
 Route::post('/contact', [ContactController::class, 'sendContactMessage'])->name('contact.send');
 Route::get('/', [PostController::class, 'index'])->name('welcome');
@@ -31,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
     Route::get('/post', [PostController::class, 'index'])->name('Post.index');
     Route::post('/post-store', [PostController::class, 'store'])->name('Post.store');
+    
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
@@ -55,6 +66,17 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::patch('users/{user}', [AdminController::class, 'update']);
     Route::delete('users/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
 
+    //for the comments
+    Route::post('/comments/{id}/approve', [AdminController::class, 'approveComment'])->name('admin.comments.approve');
+    Route::post('/comments/{id}/reject', [AdminController::class, 'rejectComment'])->name('admin.comments.reject');
+    Route::post('/replies/{id}/approve', [AdminController::class, 'approveReply'])->name('admin.replies.approve');
+    Route::post('/replies/{id}/reject', [AdminController::class, 'rejectReply'])->name('admin.replies.reject');
+
+
+
+
+    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->name('replies.store');
 });
 
 require __DIR__.'/auth.php';
