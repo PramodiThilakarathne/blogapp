@@ -11,11 +11,11 @@
                     <div class="w-full bg-white shadow-md rounded-lg">
                         <div class="w-full px-6 py-4">
                             <h1 class="text-3xl font-bold mb-4 text-left text-pink-800">Add a Blog</h1>
-                            @if(session('success'))
+                            {{-- @if(session('success'))
                                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6" role="alert">
                                     {{ session('success') }}
                                 </div>
-                            @endif
+                            @endif --}}
                             <form action="{{ route('Post.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="w-full mb-4">

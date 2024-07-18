@@ -32,7 +32,7 @@ class PostController extends Controller
         //     $query->whereDate('created_at', $request->date);
         // }
 
-        $posts = $query->latest()->paginate(5);
+        $posts = $query->latest()->paginate(6);
         $categories = Category::all();
 
         return view('welcome', compact('posts', 'categories'));
@@ -54,7 +54,7 @@ class PostController extends Controller
 
         $posts = $query->paginate(6);
 
-        return view('welcome', compact('categories', 'posts'));
+        return view('post', compact('categories', 'posts'));
     }
 
     // public function getTitlesByCategory($categoryId)

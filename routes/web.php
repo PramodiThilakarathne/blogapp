@@ -17,7 +17,7 @@ Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->n
 
 
 Route::post('/contact', [ContactController::class, 'sendContactMessage'])->name('contact.send');
-Route::get('/', [PostController::class, 'index'])->name('welcome');
+Route::get('/', [PostController::class, 'first'])->name('welcome');
 // Route::get('/get-titles-by-category/{categoryId}', [PostController::class, 'getTitlesByCategory']);
 
 Route::get('/about', function () {
