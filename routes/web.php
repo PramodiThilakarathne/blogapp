@@ -14,10 +14,6 @@ use App\Http\Controllers\ReplyController;
 
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->name('replies.store');
-//Route::post('/replies/{comment}', [ReplyController::class, 'store'])->name('replies.store');
-// Route::post('/replies/{reply}/approve', [ReplyController::class, 'approve'])->name('admin.replies.approve');
-// Route::post('/replies/{reply}/reject', [ReplyController::class, 'reject'])->name('admin.replies.reject');
-
 
 
 Route::post('/contact', [ContactController::class, 'sendContactMessage'])->name('contact.send');

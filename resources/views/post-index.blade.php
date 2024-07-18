@@ -9,6 +9,26 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     @include('common.welcomeheader')
+    <style>
+        .comment-box, .reply-box {
+            border-left: 4px solid #1D4ED8;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #F9FAFB;
+            border-radius: 0.5rem;
+        }
+
+        .comment-box h3, .reply-box h3 {
+            font-size: 0.875rem; /* Small text */
+            color: #9195a3;
+        }
+
+        .comment-box p, .reply-box p {
+            font-size: 15px; /* Highlighted text */
+            font-weight: 600;
+            color: #0d0f12;
+        }
+    </style>
     <br><br>
 </head>
 <body class="antialiased font-sans bg-gray-100">
@@ -31,7 +51,6 @@
             <p class="text-gray-600 mb-6">{!! $post->content !!}</p>
             <p class="text-sm text-gray-500 mt-2">{{ $post->created_at->diffForHumans() }} by {{ $post->user->name }}</p>
         </div>
-        </div>
     </div>
 </div>
 
@@ -42,29 +61,31 @@
 
         <!-- Display existing comments -->
         @foreach ($comments as $comment)
-            <div class="mb-6">
+            <div class="comment-box">
                 <div class="flex items-start mb-2">
                     {{-- <div class="flex-shrink-0 mr-3">
                         <img class="w-10 h-10 rounded-full" src="{{ asset('storage/' . $comment->user->profile_photo_path) }}" alt="User Avatar">
                     </div> --}}
                     <div>
-                        <h3 class="text-lg font-semibold">{{ $comment->user->name }}</h3>
-                        <p class="text-gray-600">{{ $comment->content }}</p>
+                        
+                        <p>{{ $comment->content }}</p>
                         <div class="text-gray-400 text-sm">{{ $comment->created_at->diffForHumans() }}</div>
+                        <h3 class="text-lg font-semibold">{{ $comment->user->name }}</h3>
                     </div>
                 </div>
 
                 <!-- Display existing replies -->
                 @foreach ($comment->replies as $reply)
-                    <div class="ml-12 mb-4">
+                    <div class="reply-box ml-12">
                         <div class="flex items-start mb-2">
                             {{-- <div class="flex-shrink-0 mr-3">
                                 <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $reply->user->profile_photo_path) }}" alt="User Avatar">
                             </div> --}}
                             <div>
-                                <h3 class="text-lg font-semibold">{{ $reply->user->name }}</h3>
-                                <p class="text-gray-600">{{ $reply->content }}</p>
+                               
+                                <p>{{ $reply->content }}</p>
                                 <div class="text-gray-400 text-sm">{{ $reply->created_at->diffForHumans() }}</div>
+                                <h3 class="text-lg font-semibold">{{ $reply->user->name }}</h3>
                             </div>
                         </div>
                     </div>
@@ -87,7 +108,6 @@
         </form>
     </div>
 </div>
-
 
 @if(session('comment_waiting'))
     <script>

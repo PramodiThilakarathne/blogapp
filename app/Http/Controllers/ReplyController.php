@@ -45,10 +45,10 @@ class ReplyController extends Controller
     public function index()
     {
         // Example logic to fetch comments and pass them to a view
-        $comments = Comment::where('approved', false)->with(['post', 'user'])->get();
+        //$comments = Comment::where('approved', false)->with(['post', 'user'])->get();
         $replies = Reply::where('approved', false)->with(['comment', 'user'])->get();
 
-        return view('admin.replies', compact('comments', 'replies'));
+        return view('admin.replies', compact('replies'));
     }
     
 }

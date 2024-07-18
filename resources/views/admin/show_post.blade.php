@@ -6,6 +6,27 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> --}}
+    <style>
+        .comment-box, .reply-box {
+            border-left: 4px solid #1D4ED8;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #F9FAFB;
+            border-radius: 0.5rem;
+        }
+
+        .comment-box h3, .reply-box h3 {
+            font-size: 0.875rem; /* Small text */
+            color: #9195a3;
+        }
+
+        .comment-box p, .reply-box p {
+            font-size: 16px; /* Highlighted text */
+            font-weight: 600;
+            color: #0d0f12;
+        }
+    </style>
+
     <div class="container mx-auto mt-12 px-4">
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         @if ($post->image)
@@ -25,5 +46,58 @@
     </div>
 </div>
 
+<div class="container mx-auto mt-8 px-4">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-semibold mb-4">Comments</h2>
+
+        <!-- Display existing comments -->
+        @foreach ($comments as $comment)
+            <div class="comment-box">
+                <div class="flex items-start mb-2">
+                    {{-- <div class="flex-shrink-0 mr-3">
+                        <img class="w-10 h-10 rounded-full" src="{{ asset('storage/' . $comment->user->profile_photo_path) }}" alt="User Avatar">
+                    </div> --}}
+                    <div>
+                        
+                        <p>{{ $comment->content }}</p>
+                        <div class="text-gray-400 text-sm">{{ $comment->created_at->diffForHumans() }}</div>
+                        <h3 class="text-lg font-semibold">{{ $comment->user->name }}</h3>
+                    </div>
+                </div>
+
+                <!-- Display existing replies -->
+                @foreach ($comment->replies as $reply)
+                    <div class="reply-box ml-12">
+                        <div class="flex items-start mb-2">
+                            {{-- <div class="flex-shrink-0 mr-3">
+                                <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $reply->user->profile_photo_path) }}" alt="User Avatar">
+                            </div> --}}
+                            <div>
+                               
+                                <p>{{ $reply->content }}</p>
+                                <div class="text-gray-400 text-sm">{{ $reply->created_at->diffForHumans() }}</div>
+                                <h3 class="text-lg font-semibold">{{ $reply->user->name }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+                <!-- Reply form -->
+                <form action="{{ route('replies.store', $comment) }}" method="POST" class="ml-12">
+                    @csrf
+                    <textarea name="content" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2" placeholder="Add a reply..."></textarea>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Reply</button>
+                </form>
+            </div>
+        @endforeach
+
+        <!-- Comment form -->
+        <form action="{{ route('comments.store', $post) }}" method="POST">
+            @csrf
+            <textarea name="content" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2" placeholder="Add a comment..."></textarea>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Comment</button>
+        </form>
+    </div>
+</div>
 @include('common.footer')
 </x-app-layout>

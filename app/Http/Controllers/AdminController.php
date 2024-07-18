@@ -125,7 +125,16 @@ class AdminController extends Controller
 
     public function showPost(Post $post)
     {
-            return view('admin.show_post', compact('post'));
+        $post->load(['comments' => function ($query) {
+            $query->where('approved', true)->with(['replies' => function ($query) {
+                $query->where('approved', true);
+            }, 'user', 'replies.user']);
+        }]);
+
+     
+        $comments = $post->comments;
+
+        return view('admin.show_post', compact('post', 'comments'));
     }
 
 
