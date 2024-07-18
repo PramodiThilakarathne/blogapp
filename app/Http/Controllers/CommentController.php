@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Reply;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+
 
 class CommentController extends Controller
 {
@@ -28,8 +30,9 @@ class CommentController extends Controller
     public function index()
     {
         // Example logic to fetch comments and pass them to a view
-        $comments = Comment::all(); // Adjust as per your application's logic
-        
-        return view('admin.comments', compact('comments'));
+        $comments = Comment::where('approved', false)->with(['post', 'user'])->get();
+        $replies = Reply::where('approved', false)->with(['comment', 'user'])->get();
+
+        return view('admin.comments', compact('comments', 'replies'));
     }
 }

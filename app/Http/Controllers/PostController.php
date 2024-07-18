@@ -57,11 +57,11 @@ class PostController extends Controller
         return view('welcome', compact('categories', 'posts'));
     }
 
-    public function getTitlesByCategory($categoryId)
-    {
-        $titles = Post::where('category_id', $categoryId)->get(['id', 'title']);
-        return response()->json(['titles' => $titles]);
-    }
+    // public function getTitlesByCategory($categoryId)
+    // {
+    //     $titles = Post::where('category_id', $categoryId)->get(['id', 'title']);
+    //     return response()->json(['titles' => $titles]);
+    // }
 
     public function store(Request $request)
     {
@@ -178,36 +178,36 @@ class PostController extends Controller
         return view('post-index', compact('post', 'comments'));
     }
 
-    public function storeComment(Request $request, Post $post)
-    {
-        $request->validate([
-            'content' => 'required|string',
-        ]);
+    // public function storeComment(Request $request, Post $post)
+    // {
+    //     $request->validate([
+    //         'content' => 'required|string',
+    //     ]);
 
-        $comment = new Comment();
-        $comment->post_id = $post->id;
-        $comment->user_id = Auth::id();
-        $comment->content = $request->input('content');
-        $comment->approved = false; // Default to false
-        $comment->save();
+    //     $comment = new Comment();
+    //     $comment->post_id = $post->id;
+    //     $comment->user_id = Auth::id();
+    //     $comment->content = $request->input('content');
+    //     $comment->approved = false; // Default to false
+    //     $comment->save();
 
-        return redirect()->back()->with('message', 'Comment submitted for approval.');
-    }
+    //     return redirect()->back()->with('message', 'Comment submitted for approval.');
+    // }
 
-    public function storeReply(Request $request, Comment $comment)
-    {
-        $request->validate([
-            'content' => 'required|string',
-        ]);
+    // public function storeReply(Request $request, Comment $comment)
+    // {
+    //     $request->validate([
+    //         'content' => 'required|string',
+    //     ]);
 
-        $reply = new Reply();
-        $reply->comment_id = $comment->id;
-        $reply->user_id = Auth::id();
-        $reply->content = $request->input('content');
-        $reply->approved = false; // Default to false
-        $reply->save();
+    //     $reply = new Reply();
+    //     $reply->comment_id = $comment->id;
+    //     $reply->user_id = Auth::id();
+    //     $reply->content = $request->input('content');
+    //     $reply->approved = false; // Default to false
+    //     $reply->save();
 
-        return redirect()->back()->with('message', 'Reply submitted for approval.');
-    }
+    //     return redirect()->back()->with('message', 'Reply submitted for approval.');
+    // }
 
 }

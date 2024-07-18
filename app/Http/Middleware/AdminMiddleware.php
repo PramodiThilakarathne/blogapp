@@ -21,8 +21,8 @@ class AdminMiddleware
            return $next($request);
          }
 
-        // return redirect('/dashboard');
-        abort(401);
+        return redirect('/dashboard');
+        
 
         // if(Auth()->user()->role=='admin')
         // {

@@ -24,7 +24,7 @@ class ReplyController extends Controller
 
         $reply->save();
 
-        return back()->with('success', 'Reply added successfully!');
+        return back()->with('reply_waiting', 'Reply is waiting for admin approval!');
     }
 
     public function approve(Reply $reply)
@@ -41,4 +41,14 @@ class ReplyController extends Controller
 
         return back()->with('status', 'Reply rejected successfully!');
     }
+
+    public function index()
+    {
+        // Example logic to fetch comments and pass them to a view
+        $comments = Comment::where('approved', false)->with(['post', 'user'])->get();
+        $replies = Reply::where('approved', false)->with(['comment', 'user'])->get();
+
+        return view('admin.comments', compact('comments', 'replies'));
+    }
+    
 }

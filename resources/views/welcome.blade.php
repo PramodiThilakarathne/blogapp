@@ -59,13 +59,13 @@
     <div class="bg-gray-100 py-4">
         <div class="container mx-auto px-4">
             <form action="{{ route('welcome') }}" method="GET" class="flex flex-col md:flex-row items-center justify-center space-x-4">
-                <select name="category" id="category" class="p-2 rounded-md border-gray-300" onchange="showTitles(this.value)">
+                <select name="category" id="category" class="p-2 rounded-md border-gray-300">
                     <option value="">Select Category</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                 </select>
-                <div id="titles-checkboxes" class="flex flex-col md:flex-row items-center justify-center space-x-4"></div>
+                
                 <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">Filter</button>
             </form>
         </div>

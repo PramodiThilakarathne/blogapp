@@ -9,17 +9,20 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReplyController;
 
-Route::get('/admin/comments', [CommentController::class, 'index'])->name('admin.comments');
 
+
+
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->name('replies.store');
 //Route::post('/replies/{comment}', [ReplyController::class, 'store'])->name('replies.store');
-Route::post('/replies/{reply}/approve', [ReplyController::class, 'approve'])->name('admin.replies.approve');
-Route::post('/replies/{reply}/reject', [ReplyController::class, 'reject'])->name('admin.replies.reject');
+// Route::post('/replies/{reply}/approve', [ReplyController::class, 'approve'])->name('admin.replies.approve');
+// Route::post('/replies/{reply}/reject', [ReplyController::class, 'reject'])->name('admin.replies.reject');
 
 
 
 Route::post('/contact', [ContactController::class, 'sendContactMessage'])->name('contact.send');
 Route::get('/', [PostController::class, 'index'])->name('welcome');
-Route::get('/get-titles-by-category/{categoryId}', [PostController::class, 'getTitlesByCategory']);
+// Route::get('/get-titles-by-category/{categoryId}', [PostController::class, 'getTitlesByCategory']);
 
 Route::get('/about', function () {
     return view('about');
@@ -67,16 +70,15 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::delete('users/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
 
     //for the comments
+    // Comments approval routes
+    Route::get('/comments', [CommentController::class, 'index'])->name('admin.comments');
     Route::post('/comments/{id}/approve', [AdminController::class, 'approveComment'])->name('admin.comments.approve');
     Route::post('/comments/{id}/reject', [AdminController::class, 'rejectComment'])->name('admin.comments.reject');
+    
+    // Replies approval routes
+    Route::get('/replies', [ReplyController::class, 'index'])->name('admin.replies');
     Route::post('/replies/{id}/approve', [AdminController::class, 'approveReply'])->name('admin.replies.approve');
     Route::post('/replies/{id}/reject', [AdminController::class, 'rejectReply'])->name('admin.replies.reject');
-
-
-
-
-    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
-    Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->name('replies.store');
 });
 
 require __DIR__.'/auth.php';

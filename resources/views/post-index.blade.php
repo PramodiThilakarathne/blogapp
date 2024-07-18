@@ -103,6 +103,20 @@
     </script>
     @endif
 
+    @if(session('reply_waiting'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "{{ session('reply_waiting') }}",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
+    </script>
+    @endif
+
 
 </body>
 </html>
