@@ -27,20 +27,20 @@ class ReplyController extends Controller
         return back()->with('reply_waiting', 'Reply is waiting for admin approval!');
     }
 
-    public function approve(Reply $reply)
-    {
-        $reply->approved = true;
-        $reply->save();
+    // public function approve(Reply $reply)
+    // {
+    //     $reply->approved = true;
+    //     $reply->save();
 
-        return back()->with('status', 'Reply approved successfully!');
-    }
+    //     return back()->with('status', 'Reply approved successfully!');
+    // }
 
-    public function reject(Reply $reply)
-    {
-        $reply->delete();
+    // public function reject(Reply $reply)
+    // {
+    //     $reply->delete();
 
-        return back()->with('status', 'Reply rejected successfully!');
-    }
+    //     return back()->with('status', 'Reply rejected successfully!');
+    // }
 
     public function index()
     {
@@ -48,7 +48,7 @@ class ReplyController extends Controller
         $comments = Comment::where('approved', false)->with(['post', 'user'])->get();
         $replies = Reply::where('approved', false)->with(['comment', 'user'])->get();
 
-        return view('admin.comments', compact('comments', 'replies'));
+        return view('admin.replies', compact('comments', 'replies'));
     }
     
 }

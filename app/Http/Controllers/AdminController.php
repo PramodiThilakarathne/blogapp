@@ -55,7 +55,7 @@ class AdminController extends Controller
         $reply = Reply::findOrFail($id);
         $reply->delete();
 
-        return redirect()->route('admin.comments')->with('reply_reject', 'Reply rejected.');
+        return redirect()->route('admin.replies')->with('reply_reject', 'Reply rejected.');
     }
 
     public function users(Request $request)
@@ -76,6 +76,7 @@ class AdminController extends Controller
     public function viewUserPosts(User $user)
     {
         $posts = $user->posts()->get();
+        
         return view('admin.user_posts', compact('user', 'posts'));
     }
 
