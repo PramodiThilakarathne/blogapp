@@ -1,46 +1,53 @@
 <x-app-layout>
     @include('common.header')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-black-100">
-                    @if ($replies->isEmpty())
-                        <p>No replies pending approval.</p>
-                    @else
-                        <table class="min-w-full bg-white">
-                            <thead>
-                                <tr>
-                                    <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">Reply</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">User</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">Corresponding Comment</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">Post</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="replies-tbody">
-                                @foreach ($replies as $reply)
-                                    <tr id="reply-{{ $reply->id }}">
-                                        <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{ $reply->content }}</td>
-                                        <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{ $reply->user->name }}</td>
-                                        <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{ $reply->comment->content }}</td>
-                                        <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700"><a href="{{ route('post.show', $reply->comment->post->id) }}">{{ $reply->comment->post->title }}</a></td>
-                                        <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                                            <button type="button" class="px-4 py-2 bg-green-500 text-white rounded-md" onclick="approveReply({{ $reply->id }})">Approve</button>
-                                            <button type="button" class="px-4 py-2 bg-red-500 text-white rounded-md" onclick="confirmDelete(event, 'reject-reply-{{ $reply->id }}')">Reject</button>
-                                            <form id="reject-reply-{{ $reply->id }}" action="{{ route('admin.replies.reject', $reply) }}" method="POST" class="hidden">
-                                                @csrf
-                                            </form>
-                                        </td>
+    
+    <!-- Main Layout Wrapper -->
+    <div class="min-h-screen flex flex-col">
+        <!-- Main Content -->
+        <div class="flex-grow py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-black-100">
+                        @if ($replies->isEmpty())
+                            <p>No replies pending approval.</p>
+                        @else
+                            <table class="min-w-full bg-white">
+                                <thead>
+                                    <tr>
+                                        <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">Reply</th>
+                                        <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">User</th>
+                                        <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">Corresponding Comment</th>
+                                        <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">Post</th>
+                                        <th class="px-6 py-3 border-b border-gray-200 dark:border-gray-700 dark:text-black-100">Actions</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
+                                </thead>
+                                <tbody id="replies-tbody">
+                                    @foreach ($replies as $reply)
+                                        <tr id="reply-{{ $reply->id }}">
+                                            <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{ $reply->content }}</td>
+                                            <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{ $reply->user->name }}</td>
+                                            <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">{{ $reply->comment->content }}</td>
+                                            <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700"><a href="{{ route('post.show', $reply->comment->post->id) }}">{{ $reply->comment->post->title }}</a></td>
+                                            <td class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                                                <button type="button" class="px-4 py-2 bg-green-500 text-white rounded-md" onclick="approveReply({{ $reply->id }})">Approve</button>
+                                                <button type="button" class="px-4 py-2 bg-red-500 text-white rounded-md" onclick="confirmDelete(event, 'reject-reply-{{ $reply->id }}')">Reject</button>
+                                                <form id="reject-reply-{{ $reply->id }}" action="{{ route('admin.replies.reject', $reply) }}" method="POST" class="hidden">
+                                                    @csrf
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Footer -->
+        @include('common.footer')
     </div>
 
     @if(session('reply_success'))
@@ -70,8 +77,6 @@
             });
         </script>
     @endif
-
-    @include('common.footer')
 </x-app-layout>
 
 <script>

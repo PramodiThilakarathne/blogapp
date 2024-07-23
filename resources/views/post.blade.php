@@ -4,10 +4,17 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
     </head>
     
-    <div class="py-12">
+    <div class="bg-cover bg-center h-screen" style="background-image: url('{{ asset('images/addblog.png') }}');">
+        <br>
+    <div class="py-10">
+        
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            
+            <div class="bg-black overflow-hidden shadow-sm sm:rounded-lg">
+                
                 <div class="p-6 text-gray-800">
+                    
+                     
                     <div class="w-full bg-white shadow-md rounded-lg">
                         <div class="w-full px-6 py-4">
                             <h1 class="text-3xl font-bold mb-4 text-left text-pink-800">Add a Blog</h1>
@@ -49,6 +56,7 @@
                                 </div>
                             </form>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

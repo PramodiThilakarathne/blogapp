@@ -39,6 +39,31 @@ class PostController extends Controller
     }
 
 
+    public function allblogs(Request $request)
+    {
+        $query = Post::query();
+
+        if ($request->has('category') && $request->category) {
+            $query->where('category_id', $request->category);
+        }
+
+        // if ($request->has('author') && $request->author) {
+        //     $query->whereHas('user', function($q) use ($request) {
+        //         $q->where('name', 'like', '%' . $request->author . '%');
+        //     });
+        // }
+
+        // if ($request->has('date') && $request->date) {
+        //     $query->whereDate('created_at', $request->date);
+        // }
+
+        $posts = $query->latest()->paginate(8);
+        $categories = Category::all();
+
+        return view('allblogs', compact('posts', 'categories'));
+    }
+
+
     public function index(Request $request)
     {
         $categories = Category::all();

@@ -35,4 +35,10 @@ class CommentController extends Controller
 
         return view('admin.comments', compact('comments'));
     }
+
+    public function userComments()
+    {
+        $comments = Comment::where('user_id', Auth::id())->with('replies', 'post')->get();
+        return view('comments', compact('comments'));
+    }
 }

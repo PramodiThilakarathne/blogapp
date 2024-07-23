@@ -19,7 +19,7 @@ Route::post('/comments/{comment}/replies', [ReplyController::class, 'store'])->n
 Route::post('/contact', [ContactController::class, 'sendContactMessage'])->name('contact.send');
 Route::get('/', [PostController::class, 'first'])->name('welcome');
 // Route::get('/get-titles-by-category/{categoryId}', [PostController::class, 'getTitlesByCategory']);
-
+Route::get('/category', [PostController::class, 'allblogs'])->name('category');
 Route::get('/about', function () {
     return view('about');
 })->name('about');
@@ -30,6 +30,8 @@ Route::get('/contact', function () {
 
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::get('/dashboard', [PostController::class, 'userPosts'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/allblogs', [PostController::class, 'allblogs'])->name('post.allblogs');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
     Route::get('/post', [PostController::class, 'index'])->name('Post.index');
     Route::post('/post-store', [PostController::class, 'store'])->name('Post.store');
-    
+    Route::get('comments', [CommentController::class, 'userComments'])->name('comments');
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {

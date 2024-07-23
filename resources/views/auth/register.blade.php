@@ -1,3 +1,23 @@
+<head>
+    <style>
+    body {
+        background-image: url('/images/login.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        margin: 0;
+        font-family: 'Nunito', sans-serif;
+    }
+    
+    .login-container {
+        background: rgba(255, 255, 255, 0.9); /* Optional: Add a semi-transparent background for better readability */
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    </style>
+
 @include('common.welcomeheader')
 <br>
 <br>

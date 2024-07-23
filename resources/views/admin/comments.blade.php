@@ -113,7 +113,7 @@
         </script>
     @endif
 
-    @include('common.footer')
+    
 </x-app-layout>
 
 <script>
@@ -189,10 +189,11 @@
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swalWithBootstrapButtons.fire({
                     title: "Cancelled",
-                    text: "Your blog file is safe :)",
+                    text: "Reply is safe :)",
                     icon: "error"
                 });
             }
         });
     }
 </script>
+@include('common.footer')

@@ -1,6 +1,8 @@
 <x-app-layout>
     @include('common.welcomeheader')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <div class="bg-cover bg-center h-screen" style="background-image: url('{{ asset('images/contact.jpg') }}');">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex flex-col md:flex-row">
@@ -42,6 +44,8 @@
             </div>
         </div>
     </div>
+
+    @include('common.footer')
 </x-app-layout>
 
 @if(session('success'))
@@ -54,4 +58,4 @@ Swal.fire({
 </script>
 @endif
 
-@include('common.footer')
+

@@ -13,8 +13,8 @@
 
         <div class="flex justify-end items-center">
             <div class="flex items-center gap-x-2">
-                <a href="{{ route('profile.edit') }}" class="text-sm text-gray-700 hover:text-blue-600 transition duration-300 ease-in-out py-2 px-4 rounded-full bg-blue-100 hover:bg-blue-200">Profile</a>
-                <a href="{{ route('welcome') }}" class="text-sm text-gray-700 hover:text-blue-600 transition duration-300 ease-in-out py-2 px-4 rounded-full bg-blue-100 hover:bg-blue-200">Home</a>
+                <a href="{{ route('profile.edit') }}" class="text-sm text-black-700 hover:text-blue-600 transition duration-300 ease-in-out py-2 px-4 rounded-full bg-blue-300 hover:bg-blue-200">Profile</a>
+                <a href="{{ route('welcome') }}" class="text-sm text-black-700 hover:text-blue-600 transition duration-300 ease-in-out py-2 px-4 rounded-full bg-blue-300 hover:bg-blue-200">Home</a>
             </div>
         </div>
     </x-slot>
@@ -22,7 +22,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-4 bg-blue-100 text-gray-900">
+                <div class="p-4 bg-gray-300 text-gray-900">
                     {{ __("This is your blog page!") }}
                 </div>
             </div>
@@ -62,14 +62,15 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-4 text-center space-x-2">
-                                    <a href="{{ route('post.edit', $post) }}" class="btn-fixed bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Edit</a>
+                                    <a href="{{ route('post.edit', $post) }}" class="btn-fixed bg-teal-500 hover:bg-teal-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Edit</a>
                                     <form id="delete-post-{{ $post->id }}" action="{{ route('post.destroy', $post->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn-fixed bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none" onclick="confirmDelete(event, 'delete-post-{{ $post->id }}')">Delete</button>
+                                        <button type="button" class="btn-fixed bg-yellow-400 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none" onclick="confirmDelete(event, 'delete-post-{{ $post->id }}')">Delete</button>
                                     </form>
-                                    <a href="{{ route('post.show', $post) }}" class="btn-fixed bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">View</a>
+                                    <a href="{{ route('post.show', $post) }}" class="btn-fixed bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">View</a>
                                 </td>
+                                
                             </tr>
                         @endforeach
                     </tbody>

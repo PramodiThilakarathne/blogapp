@@ -3,6 +3,7 @@
     @include('common.header')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 </head>
+
 <div class="w-full px-6 py-4">
 <h1 class="text-3xl font-bold mb-4 text-left text-pink-800">Update the post</h1>
     <div style="background-color: #fff; padding: 40px; width: 100%; margin: 40px auto; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">

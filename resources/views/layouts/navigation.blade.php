@@ -16,6 +16,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @auth
+                    <x-nav-link :href="route('comments')" :active="request()->routeIs('user.comments')">
+                        {{ __('My Comments & Replies') }}
+                    </x-nav-link>
                     @if(Auth::user() && Auth::user()->isAdmin())
                         <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
                             {{ __('Users') }}
@@ -27,6 +31,7 @@
                             {{ __('Replies') }}
                         </x-nav-link>
                     @endif
+                    @endauth
                 </div>
             </div>
 
@@ -83,6 +88,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            @auth
+                    <x-responsive-nav-link :href="route('comments')" :active="request()->routeIs('user.comments')">
+                        {{ __('My Comments & Replies') }}
+                    </x-responsive-nav-link>
+
             @if(Auth::user() && Auth::user()->isAdmin())
                 <x-responsive-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
                     {{ __('Users') }}
@@ -94,6 +105,7 @@
                     {{ __('Replies') }}
                 </x-responsive-nav-link>
             @endif
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
