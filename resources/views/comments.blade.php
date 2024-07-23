@@ -2,9 +2,9 @@
     @include('common.header')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <div class="min-h-screen flex flex-col">
+    
         <!-- Main Content -->
-        <div class="flex-grow py-12">
+        <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-black-100">
@@ -55,8 +55,8 @@
         </div>
 
         <!-- Footer -->
-        @include('common.footer')
-    </div>
+
+
 
     @if(session('comment_success'))
         <script>
@@ -114,3 +114,4 @@
         </script>
     @endif
 </x-app-layout>
+@include('common.footer')

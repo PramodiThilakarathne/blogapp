@@ -10,6 +10,39 @@
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     @include('common.welcomeheader')
     <br><br>
+
+<style>
+.button {
+  --😀: #18a1d7;
+  /* --😀😀: #141316;
+  --😀😀😀: #0d0d0f63; */
+  cursor: pointer;
+  width: 100px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #fff;
+  background: var(--😀);
+  border: 2px solid var(--😀😀);
+  border-radius: .75rem;
+  
+  transform: skew(-10deg);
+  transition: all .1s ease;
+  filter: drop-shadow(0 15px 20px var(--😀😀😀));
+}
+
+.button:active {
+  letter-spacing: 0px;
+  transform: skew(-10deg) translateY(8px);
+  box-shadow: 0 0 0 var(--😀😀😀);
+}
+    </style>
+
 </head>
 <body class="antialiased font-sans bg-gray-100">
 
@@ -77,8 +110,8 @@
                 <!-- Reply form -->
                 <form action="{{ route('replies.store', $comment) }}" method="POST" class="ml-12">
                     @csrf
-                    <textarea name="content" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2" placeholder="Add a reply..."></textarea>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Reply</button>
+                    <textarea name="content" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2" placeholder="Add a reply..." required></textarea>
+                    <button type="submit" class="button ">Reply</button>
                 </form>
             </div>
         @endforeach
@@ -86,8 +119,8 @@
         <!-- Comment form -->
         <form action="{{ route('comments.store', $post) }}" method="POST">
             @csrf
-            <textarea name="content" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2" placeholder="Add a comment..."></textarea>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Comment</button>
+            <textarea name="content" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2" placeholder="Add a comment..." required></textarea>
+            <button type="submit" class="button ">Comment</button>
         </form>
     </div>
 </div>
@@ -119,6 +152,6 @@
         });
     </script>
 @endif
-
+@include('common.footer')
 </body>
 </html>

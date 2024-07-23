@@ -70,6 +70,7 @@
                     console.error('Error during initialization of the editor', error);
                 });
         </script>
-        @include('common.footer')
+        
     </x-app-layout>
+    @include('common.footer')
     

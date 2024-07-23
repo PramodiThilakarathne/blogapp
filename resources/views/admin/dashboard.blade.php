@@ -78,9 +78,7 @@
         </div>
     </div>
 
-    @include('common.footer')
-
-
+   
     @if(session('post_store'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -148,3 +146,4 @@
         }
     </script>
 </x-app-layout>
+@include('common.footer')

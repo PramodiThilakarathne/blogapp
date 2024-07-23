@@ -3,9 +3,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- Main Layout Wrapper -->
-    <div class="min-h-screen flex flex-col">
+    {{-- <div class="min-h-screen flex flex-col"> --}}
         <!-- Main Content -->
-        <div class="flex-grow py-12">
+        <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-black-100">
@@ -46,9 +46,7 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        @include('common.footer')
-    </div>
+        
 
     @if(session('reply_success'))
         <script>
@@ -138,3 +136,4 @@
         });
     }
 </script>
+ @include('common.footer')

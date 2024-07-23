@@ -71,7 +71,7 @@
 
     <div class="container mx-auto p-6">
         <div class="bg-white shadow-xl rounded-lg p-8">
-            <h3 class="font-extrabold text-3xl text-purple-600">Users</h3>
+             <h3 class="font-extrabold text-3xl text-purple-600">Users</h3>
             <table class="min-w-full bg-white mt-4 table-auto">
                 <thead>
                     <tr class="bg-gray-200">
@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    @include('common.footer')
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         function confirmDelete(event, userId) {
@@ -140,3 +140,4 @@
         }
     </script>
 </x-app-layout>
+@include('common.footer')

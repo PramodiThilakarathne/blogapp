@@ -24,5 +24,6 @@
         </div>
     </div>
 
-    @include('common.footer')
+    
 </x-app-layout>
+@include('common.footer')

@@ -79,7 +79,7 @@
         </div>
     </div>
 
-    @include('common.footer')
+
 
 
     @if(session('post_store'))
@@ -149,3 +149,4 @@
         }
     </script>
 </x-app-layout>
+@include('common.footer')

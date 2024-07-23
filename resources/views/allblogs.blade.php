@@ -67,5 +67,5 @@
     </div>
 </div>
     </main>
-@include('common.footer')
+    @include('common.footer')
 </body>

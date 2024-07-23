@@ -43,7 +43,7 @@
                                 </div>
     
                                 <div class="w-full mb-4">
-                                    <label for="content" class="block text-lg font-bold mb-2 text-gray-800">Content</label>
+                                    <label for="content" class="block text-lg font-bold mb-2 text-gray-800" required>Content</label>
                                     <textarea id="content" name="content"></textarea>
                                 </div>
                                 
@@ -74,6 +74,7 @@
             });
     </script>
     
-    @include('common.footer')
+   
     </x-app-layout>
+    @include('common.footer')
     
