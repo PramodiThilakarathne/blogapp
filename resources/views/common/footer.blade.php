@@ -131,7 +131,28 @@
 
     <footer class="bg-blue-200 shadow-md rounded px-8 py-6 mt-12 mb-4 flex justify-between">
         <!-- Left Section -->
+
         <div class="footer-section">
+            <br>
+            <br>
+            <h6 class="heading font-bold">About Our Blog</h6>
+            <p>Welcome to our blog, where we share insightful articles, tips, and stories on a variety of topics. Whether you're looking for inspiration, knowledge, or entertainment, our content is crafted to enlighten and engage.</p>
+            <p>Join us on this journey and explore the latest trends, expert advice, and more. Stay connected and never miss an update!</p>
+        </div>
+
+
+
+
+        <div class="footer-section">
+            <br>
+            {{-- <h6 class="heading">Aliquam non fermentum</h6>
+            <address>Street Name &amp; Number, Town, Postcode/Zip</address> --}}
+            <h4 class="text-lg font-bold text-gray-800 mb-2">Quick Links</h4>
+                <nav class="flex flex-col items-center">
+                    <a href="{{ route('profile.edit') }}" class="footer-link">Profile</a>
+                    <a href="{{ route('about') }}" class="footer-link">About Us</a>
+                    <a href="{{ route('contact') }}" class="footer-link">Contact Us</a>
+                </nav>
             <ul class="wrapper">
                 <li class="icon facebook">
                     <span class="tooltip">Facebook</span>
@@ -161,7 +182,7 @@
         </div>
 
         <!-- Middle Section -->
-        <div class="footer-section">
+        {{-- <div class="footer-section">
             <div class="flex flex-col items-center mb-4">
                 <h4 class="text-lg font-bold text-gray-800 mb-2">Quick Links</h4>
                 <nav class="flex flex-col items-center">
@@ -170,14 +191,22 @@
                     <a href="{{ route('contact') }}" class="footer-link">Contact Us</a>
                 </nav>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Right Section -->
         <div class="footer-section">
             <div class="flex flex-col items-center mb-4">
                 <img src="/images/b2.jpeg" alt="Humpty Dumpty" class="w-12 h-12 rounded-full mb-2">
                 <h4 class="text-lg font-bold text-gray-800">My Blog</h4>
-                <p class="text-gray-600">koralalagejayaneththi@gmail.com</p>
+                
+      <ul class="nospace btmspace-30 linklist contact">
+        
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-fax"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> koralalagejayaneththi@gmail.com</li>
+      </ul>
+            
+            
             </div>
         </div>
     </footer>

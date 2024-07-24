@@ -18,7 +18,7 @@
 
     <style>
     .view-all-blogs-container {
-        position: fixed;
+       
         bottom: 10%;
         left: 2%;
         z-index: 50;
@@ -33,7 +33,7 @@
         background-color: #54595f;
         border: none;
         border-radius: 5px;
-        text-transform: uppercase;
+        position: fixed;
         text-align: center;
         cursor: pointer;
         transition: background-color 0.3s, transform 0.3s;
@@ -48,8 +48,8 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 300%;
-        height: 300%;
+        width: 100%;
+        height: 100%;
         background-color: rgba(255, 255, 255, 0.2);
         transition: all 0.3s;
         transform: translate(-50%, -50%) scale(0);
@@ -96,7 +96,7 @@
     .image-container {
         position: relative;
         width: 1500px;
-        height: 300px;
+        height: 500px;
         margin: 0 auto;
     }
     .image-container img {
@@ -175,7 +175,16 @@
                 <div class="wave-text"></div>
             </div>
         </div>
+    </div> 
+
+<br>
+
+    <div class="view-all-blogs-container">
+        <a href="{{ route('post.allblogs') }}" class="view-all-blogs-button">
+            View All Blogs
+        </a>
     </div>
+    
     <!-- Latest Posts Section -->
     
     <div class="container mx-auto mt-12 px-4">
@@ -202,14 +211,9 @@
     </div>
     
 </div>
+<br>
+<br>
 
-
-
-<div class="view-all-blogs-container">
-    <a href="{{ route('post.allblogs') }}" class="view-all-blogs-button">
-        View All Blogs
-    </a>
-</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
     <script>
@@ -234,10 +238,8 @@
         });
     </script>
 </main>
-<br>
-<br>
-<br>
 @include('common.footer')
+
 
 
 

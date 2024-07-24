@@ -56,7 +56,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/posts/{post}', [AdminController::class, 'showPost'])->name('admin.posts.show');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-    
     //user crud routes
     // Route::get('users', [AdminController::class, 'index'])->name('admin.users.index');
     Route::get('users/create', [AdminController::class, 'create'])->name('admin.users.create');
