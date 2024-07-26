@@ -1,4 +1,5 @@
 <head>
+    @include('common.styles')
     <style>
     body {
         background-image: url('/images/login.jpg');

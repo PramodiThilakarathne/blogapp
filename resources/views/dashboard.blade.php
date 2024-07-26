@@ -35,6 +35,30 @@
         </a>
     </div>
 
+    
+        <div class="w-[100vw] mx-auto sm:px-6 lg:px-8">
+            <div class="overflow-hidden flex justify-center items-center">
+                <div class="text-gray-900 flex flex-col md:flex-row shadow-xl">
+                    <div class="w-fit flex flex-col lg:flex-row justify-center items-end">
+                        <div class="text-black rounded border-purple/50 shadow-md border lg:mr-6 lg:w-fit px-6 h-[100%] py-6 flex flex-col justify-center">
+                            <h1 class="text-lg font-bold">Your Username</h1>
+                            <h2 class="text-md text-purple font-bold">{{ Auth::user()->name }}</h2>
+                        </div>
+                        <div class="text-black rounded border-purple/50 shadow-md border lg:w-fit h-[100%] px-6 py-6 flex flex-col justify-center">
+                            <h1 class="text-lg font-bold">Your Email</h1>
+                            <h2 class="text-md text-purple font-bold">{{ Auth::user()->email }}</h2>
+                        </div>
+                    </div>
+                    <div class="text-black rounded border-purple/50 shadow-lg border lg:w-fit lg:ml-6 h-[100%] px-6 py-6 flex flex-col justify-center items-center">
+                        <h2 class="text-5xl text-purple font-bold">{{ $postCount }}</h2>
+                        <h1 class="text-md font-bold">Blogs Published</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+
     <div class="container mx-auto p-4">
         <div class="-mx-4">
             <div class="overflow-x-auto">
@@ -62,7 +86,7 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-4 text-center space-x-2">
-                                    <a href="{{ route('post.edit', $post) }}" class="btn-fixed bg-teal-500 hover:bg-teal-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Edit</a>
+                                    <a href="{{ route('post.edit', $post) }}" class="btn-fixed bg-blue-300 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none">Edit</a>
                                     <form id="delete-post-{{ $post->id }}" action="{{ route('post.destroy', $post->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')

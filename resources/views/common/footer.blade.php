@@ -132,13 +132,17 @@
     <footer class="bg-blue-200 shadow-md rounded px-8 py-6 mt-12 mb-4 flex justify-between">
         <!-- Left Section -->
 
-        <div class="footer-section">
-            <br>
-            <br>
-            <h6 class="heading font-bold">About Our Blog</h6>
-            <p>Welcome to our blog, where we share insightful articles, tips, and stories on a variety of topics. Whether you're looking for inspiration, knowledge, or entertainment, our content is crafted to enlighten and engage.</p>
-            <p>Join us on this journey and explore the latest trends, expert advice, and more. Stay connected and never miss an update!</p>
-        </div>
+        <div class="lg:col-span-2">
+            <a href='javascript:void(0)'><img src="https://readymadeui.com/readymadeui-white.svg" alt="logo"
+              class='w-44 mb-8' /></a>
+             
+                <h6 class="text-black text-lg">Subscribe to our blog site</h6>
+        
+                <div class="flex my-6 w-full">
+                  <input type="email" placeholder="Your email" class="bg-gray-200 py-3 px-5 text-base rounded-l w-full outline-none" />
+                  <button class="bg-purple-600 hover:bg-blue-700 text-gray-200 py-3 px-5 text-base rounded-r">Subscribe</button>
+                </div>
+          </div>
 
 
 

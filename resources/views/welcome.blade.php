@@ -5,71 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Blogs</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="{{ asset('css/swiper-custom.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/viewallblogs.css') }}">
-
-    <style>
-    .view-all-blogs-container {
-       
-        bottom: 10%;
-        left: 2%;
-        z-index: 50;
-    }
-    
-    .view-all-blogs-button {
-        display: inline-block;
-        padding: 12px 24px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #ffffff;
-        background-color: #54595f;
-        border: none;
-        border-radius: 5px;
-        position: fixed;
-        text-align: center;
-        cursor: pointer;
-        transition: background-color 0.3s, transform 0.3s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        text-decoration: none;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .view-all-blogs-button::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.2);
-        transition: all 0.3s;
-        transform: translate(-50%, -50%) scale(0);
-        border-radius: 50%;
-    }
-    
-    .view-all-blogs-button:hover::before {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    
-    .view-all-blogs-button:hover {
-        background-color: #357ab8;
-        transform: translateY(-3px);
-    }
-</style>    
-
-
-
-    
-    <style>
+    @include('common.styles')
+   <style>
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
@@ -87,43 +24,18 @@
             font-family: 'Nunito', sans-serif;
             font-weight: bold;
             /* font-style: italic; */
-            color: rgb(104, 91, 191);
-            animation: typing 6s steps(40, end), blink-caret .75s step-end infinite;
+           
+            animation: typing 10s steps(40, end), blink-caret .75s step-end infinite;
         }
     </style>
 
 <style>
-    .image-container {
-        position: relative;
-        width: 1500px;
-        height: 500px;
-        margin: 0 auto;
-    }
-    .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 0.5rem;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        border: 1px solid #4a5568;
-    }
-    .image-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(to top, rgba(31, 41, 55, 0.8), transparent);
-        border-radius: 0.5rem;
-    }
+    
     .wave-text {
         font-size: 4rem;
         font-weight: bold;
         font-style: italic;
-        color: rgb(255, 255, 255);
+        color: rgb(24, 20, 20);
         position: relative;
         white-space: nowrap;
     }
@@ -138,8 +50,8 @@
     .wave-text::before {
         content: 'Write it!   Explore it!';
         position: absolute;
-        left: 0;
-        animation: typing 2s infinite;
+        left: 80;
+        animation: typing 4s infinite;
     }
 </style>
 
@@ -163,36 +75,74 @@
     </div> --}}
 
     <div class="flex justify-center items-center h-32">
-        <div id="typing-container" class="typing-container">
+        <div id="typing-container" class="typing-container text-blue-400">
             Welcome to The Blog Lover Site...!
         </div>
     </div>
 
-    <div class="container mx-auto mt-10 px-2">
+    {{-- <div class="container mx-auto px-2">
         <div class="image-container">
             <img src="{{ asset('images/welcome1.jpg') }}" alt="Welcome">
-            <div class="image-overlay">
+            <div class="image-overlay flex flex-col justify-center items-center">
                 <div class="wave-text"></div>
+                <div class="mt-60"> <!-- Add mt-4 to add margin top -->
+                    <a href="{{ route('post.allblogs') }}" class="text-sm text-black hover:text-blue-600 transition duration-300 ease-in-out py-5 px-4 rounded-full bg-blue-300 hover:bg-blue-200">
+                        View All Blogs
+                    </a>
+                </div>
             </div>
         </div>
-    </div> 
+    </div> --}}
 
+
+    <div class='py-12'>
+        
+
+  <div class="px-4 sm:px-10">
+    <div class="min-h-[500px]">
+      <div class="grid md:grid-cols-2 justify-center items-center gap-10">
+        <div class="max-md:order-1">
+          <p class="mt-4 mb-2 font-semibold text-blue-600"><span class="rotate-90 inline-block mr-2">|</span> ALL IN
+            ONE
+            PAGE</p>
+          <h1 class="md:text-5xl text-4xl font-bold mb-4 md:!leading-[55px]">Share your ideas..!!</h1>
+          <p class="mt-4 text-base leading-relaxed">Stay inspired and connected as we bring you the latest trends, 
+            tips, and tales from the blog world. Join our community and let us guide you in crafting memorable moments
+             around the table. Whether you're a seasoned foodie or a curious explorer, 
+             our blog offers something delicious for everyone.</p>
+         
+          <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
+            <img src="https://readymadeui.com/google-logo.svg" class="w-28 mx-auto" alt="google-logo" />
+            <img src="https://readymadeui.com/facebook-logo.svg" class="w-28 mx-auto" alt="facebook-logo" />
+            <img src="https://readymadeui.com/linkedin-logo.svg" class="w-28 mx-auto" alt="linkedin-logo" />
+            {{-- <img src="https://readymadeui.com/pinterest-logo.svg" class="w-28 mx-auto" alt="pinterest-logo" /> --}}
+          </div>
+          <div class="wave-text flex-justify-center"></div>
+        </div>
+        <div class="max-md:mt-12 h-full">
+          <img src="https://readymadeui.com/team-image.webp" alt="banner img" class="w-full h-full object-cover" />
+        </div>
+        <div class="mt-4"> <!-- Add mt-4 to add margin top -->
+            <a href="{{ route('post.allblogs') }}" class="text-sm text-black hover:text-blue-600 transition duration-300 ease-in-out py-5 px-4 rounded-full bg-blue-300 hover:bg-blue-200">
+                View All Blogs
+            </a>
+        </div>
+      </div>
+    </div>
+
+    
+    
 <br>
 
-    <div class="view-all-blogs-container">
-        <a href="{{ route('post.allblogs') }}" class="view-all-blogs-button">
-            View All Blogs
-        </a>
-    </div>
+    
     
     <!-- Latest Posts Section -->
-    
-    <div class="container mx-auto mt-12 px-4">
+<div class="container mx-auto mt-12 px-4">
         <h3 class="text-3xl font-bold mb-6 text-left text-indigo-500 border-b-4 border-indigo-500 pb-2">Latest Posts</h3>
         <div class="swiper swiper-slider">
             <div class="swiper-wrapper">
                 @foreach($posts as $post)
-                    <div class="swiper-slide" style="background-image: url('{{ $post->image ? asset('storage/' . $post->image) : 'https://via.placeholder.com/400x200.png?text=No+Image' }}'); background-size: cover; background-position: center;">
+                    <div class="swiper-slide" style="background-image: url('{{ $post->image ? asset('storage/' . $post->image) : 'https://via.placeholder.com/1200x600.png?text=No+Image' }}'); background-size: cover; background-position: center;">
                         <div class="content p-4 bg-black bg-opacity-60 text-white">
                             <h4 class="text-3xl font-bold mb-4">{{ $post->title }}</h4>
                             <p class="text-xl mb-1">{{ \Illuminate\Support\Str::limit(strip_tags($post->content), 50, '...') }}</p>
@@ -215,6 +165,149 @@
 <br>
 
 
+<style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
+</style>
+
+<div class="min-w-screen min-h-screen bg-gray-50 flex items-center justify-center py-5">
+    <div class="w-full bg-blue-50 border-t border-b border-gray-200 px-5 py-16 md:py-24 text-white-800">
+        <div class="w-full max-w-6xl mx-auto">
+            <div class="text-center max-w-xl mx-auto">
+                <h1 class="text-6xl md:text-7xl font-bold mb-5 text-gray-600">What people <br>are saying.</h1>
+                <h3 class="text-xl mb-5 font-light">Discover why our readers love us!</h3>
+                <div class="text-center mb-10">
+                    <span class="inline-block w-1 h-1 rounded-full bg-indigo-500 ml-1"></span>
+                    <span class="inline-block w-3 h-1 rounded-full bg-indigo-500 ml-1"></span>
+                    <span class="inline-block w-40 h-1 rounded-full bg-indigo-500"></span>
+                    <span class="inline-block w-3 h-1 rounded-full bg-indigo-500 ml-1"></span>
+                    <span class="inline-block w-1 h-1 rounded-full bg-indigo-500 ml-1"></span>
+                </div>
+            </div>
+            <div class="-mx-3 md:flex items-start">
+                <div class="px-3 md:w-1/3">
+                    <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6">
+                        <div class="w-full flex mb-4 items-center">
+                            <div class="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
+                                <img src="https://i.pravatar.cc/100?img=1" alt="">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h6 class="font-bold text-sm uppercase text-gray-600">Emily Brown.</h6>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <p class="text-sm leading-tight">
+                                <span class="text-lg leading-none italic font-bold text-gray-400 mr-1">"</span>
+                                I absolutely love the diversity of topics on this blog! It's my go-to source for fresh perspectives and insightful articles. Keep up the great work!
+                                <span class="text-lg leading-none italic font-bold text-gray-400 ml-1">"</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3 md:w-1/3">
+                    <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6">
+                        <div class="w-full flex mb-4 items-center">
+                            <div class="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
+                                <img src="https://i.pravatar.cc/100?img=2" alt="">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h6 class="font-bold text-sm uppercase text-gray-600">Michael Lee.</h6>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <p class="text-sm leading-tight">
+                                <span class="text-lg leading-none italic font-bold text-gray-400 mr-1">"</span>
+                                The blog is beautifully designed and easy to navigate. I always find something new and exciting to read. The writing style is engaging and thoughtful!
+                                <span class="text-lg leading-none italic font-bold text-gray-400 ml-1">"</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3 md:w-1/3">
+                    <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6">
+                        <div class="w-full flex mb-4 items-center">
+                            <div class="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
+                                <img src="https://i.pravatar.cc/100?img=3" alt="">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h6 class="font-bold text-sm uppercase text-gray-600">Sophia White.</h6>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <p class="text-sm leading-tight">
+                                <span class="text-lg leading-none italic font-bold text-gray-400 mr-1">"</span>
+                                I'm constantly impressed by the quality of the articles and the insights shared by the contributors. This blog is a gem in the sea of online content.
+                                <span class="text-lg leading-none italic font-bold text-gray-400 ml-1">"</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="-mx-3 md:flex items-start">
+                <div class="px-3 md:w-1/3">
+                    <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6">
+                        <div class="w-full flex mb-4 items-center">
+                            <div class="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
+                                <img src="https://i.pravatar.cc/100?img=4" alt="">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h6 class="font-bold text-sm uppercase text-gray-600">James Green.</h6>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <p class="text-sm leading-tight">
+                                <span class="text-lg leading-none italic font-bold text-gray-400 mr-1">"</span>
+                                I've been a subscriber for months, and every new post excites me. The topics are diverse, and the writing is always top-notch. Highly recommended!
+                                <span class="text-lg leading-none italic font-bold text-gray-400 ml-1">"</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3 md:w-1/3">
+                    <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6">
+                        <div class="w-full flex mb-4 items-center">
+                            <div class="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
+                                <img src="https://i.pravatar.cc/100?img=5" alt="">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h6 class="font-bold text-sm uppercase text-gray-600">Olivia Turner.</h6>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <p class="text-sm leading-tight">
+                                <span class="text-lg leading-none italic font-bold text-gray-400 mr-1">"</span>
+                                As a fellow blogger, I find this site incredibly inspiring. The posts are well-researched and beautifully written. It's a fantastic resource for ideas.
+                                <span class="text-lg leading-none italic font-bold text-gray-400 ml-1">"</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3 md:w-1/3">
+                    <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light mb-6">
+                        <div class="w-full flex mb-4 items-center">
+                            <div class="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
+                                <img src="https://i.pravatar.cc/100?img=6" alt="">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h6 class="font-bold text-sm uppercase text-gray-600">Daniel Scott.</h6>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <p class="text-sm leading-tight">
+                                <span class="text-lg leading-none italic font-bold text-gray-400 mr-1">"</span>
+                                I appreciate how this blog consistently delivers high-quality content. It's clear that the writers are passionate and knowledgeable about the subjects they cover.
+                                <span class="text-lg leading-none italic font-bold text-gray-400 ml-1">"</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
     <script>
         new Swiper('.swiper-slider', {
@@ -231,7 +324,7 @@
             coverflowEffect: {
                 rotate: 50,
                 stretch: 0,
-                depth: 100,
+                depth: 400,
                 modifier: 1,
                 slideShadows: true
             }
